@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFF8F1">
+<title>宝宝启蒙台 · 1-6 岁</title>
+<style>
+  :root{
+    --bg:#FFF8F1;
+    --card:#FFFFFF;
+    --ink:#3A322C;
+    --muted:#8E8178;
+    --line:#F1E6DB;
+    --coral:#FF7A59;
+    --coral-soft:#FFEDE7;
+    --blue:#4EC5F1;
+    --blue-soft:#E8F7FE;
+    --mint:#62C98C;
+    --mint-soft:#EAF9F0;
+    --lemon:#FFC93C;
+    --lemon-soft:#FFF6DA;
+    --pink-soft:#FFEEF3;
+    --shadow:0 6px 22px rgba(180,150,125,.13);
+    --shadow-lg:0 14px 40px rgba(180,150,125,.20);
+    --r:22px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  input{font-family:inherit;font-size:16px;}
+  .wrap{max-width:1120px;margin:0 auto;padding:18px 16px calc(40px + env(safe-area-inset-bottom));}
+
+  .topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand-badge{
+    width:44px;height:44px;border-radius:15px;flex:0 0 auto;
+    background:linear-gradient(140deg,#FFD9A8,#FFB38A);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 14px rgba(255,150,110,.32);
+  }
+  .brand-txt h1{margin:0;font-size:19px;letter-spacing:.2px;}
+  .brand-txt p{margin:1px 0 0;font-size:12.5px;color:var(--muted);}
+  .top-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    min-height:44px;padding:0 14px;border-radius:14px;
+    background:var(--card);border:1.5px solid var(--line);
+    font-size:14.5px;font-weight:600;color:var(--ink);
+    box-shadow:0 3px 10px rgba(180,150,125,.08);
+    transition:transform .12s ease;
+  }
+  .btn:active{transform:scale(.96);}
+  .btn-primary{background:var(--coral);border-color:var(--coral);color:#fff;box-shadow:0 6px 16px rgba(255,122,89,.32);}
+  .btn-mint{background:var(--mint);border-color:var(--mint);color:#fff;box-shadow:0 6px 16px rgba(98,201,140,.30);}
+  .btn-big{min-height:52px;font-size:16px;border-radius:16px;padding:0 20px;}
+
+  .nav{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:none;}
+  .nav::-webkit-scrollbar{display:none;}
+  .nav a{
+    flex:0 0 auto;text-decoration:none;color:var(--muted);
+    background:#fff;border:1.5px solid var(--line);border-radius:999px;
+    padding:9px 15px;font-size:14px;font-weight:600;white-space:nowrap;
+  }
+  .nav a.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+  .card{
+    background:var(--card);border-radius:var(--r);padding:18px;
+    box-shadow:var(--shadow);border:1px solid rgba(241,230,219,.9);margin-bottom:16px;
+  }
+  .card-h{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .card-h .ic{
+    width:34px;height:34px;border-radius:11px;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-h h2{margin:0;font-size:17px;font-weight:800;letter-spacing:.2px;}
+  .card-h .sub{margin:0;font-size:12.5px;color:var(--muted);font-weight:500;}
+  .card-h .right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+  .hh{font-size:12.5px;color:var(--muted);margin:0 0 12px;}
+  .cols{display:grid;grid-template-columns:1.06fr .94fr;gap:16px;align-items:start;}
+  .cols > div{min-width:0;}
+  @media (max-width:920px){ .cols{grid-template-columns:1fr;} }
+
+  .today{background:linear-gradient(180deg,#FFFFFF 0%,#FFFCF8 100%);}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:6px;padding:7px 12px;
+    border-radius:12px;font-size:13px;font-weight:700;background:#F7F2EC;color:#6F6459;
+  }
+  .chip.late{background:var(--coral-soft);color:#D8452B;}
+  .chip.ok{background:var(--mint-soft);color:#2E8C58;}
+  .chip.blue{background:var(--blue-soft);color:#1C87B3;}
+
+  .task{display:flex;align-items:flex-start;gap:11px;padding:12px 10px;border-radius:16px;border:1.5px solid transparent;transition:background .15s ease;}
+  .task + .task{margin-top:4px;}
+  .task:hover{background:#FDF9F5;}
+  .task.late{background:#FFF6F3;border-color:#FFD9CF;}
+  .task.done .task-title{text-decoration:line-through;color:#B4A79C;}
+  .chk{
+    width:26px;height:26px;border-radius:9px;flex:0 0 auto;margin-top:1px;
+    border:2px solid #DCD0C4;background:#fff;color:#fff;
+    display:flex;align-items:center;justify-content:center;transition:all .15s ease;
+  }
+  .chk.on{background:var(--mint);border-color:var(--mint);}
+  .task-main{min-width:0;flex:1;}
+  .task-title{display:block;font-size:15.5px;font-weight:650;word-break:break-word;}
+  .task-meta{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .task.late .task-meta{color:#D8452B;font-weight:600;}
+  .mini-btn{
+    flex:0 0 auto;min-height:34px;padding:0 11px;border-radius:10px;
+    background:#fff;border:1.5px solid #FFC9BA;color:#D8452B;font-size:13px;font-weight:700;
+  }
+  .del{flex:0 0 auto;width:32px;height:32px;border-radius:10px;color:#C4B8AC;display:flex;align-items:center;justify-content:center;}
+  .del:hover{background:#F7F2EC;color:#D8452B;}
+  .sec-label{font-size:12.5px;font-weight:800;color:var(--muted);letter-spacing:.6px;margin:16px 0 6px;display:flex;align-items:center;gap:6px;}
+  .sec-label.late{color:#D8452B;}
+  .addrow{display:flex;gap:8px;margin-top:14px;}
+  .addrow input{
+    flex:1;min-width:0;min-height:50px;padding:0 15px;border-radius:15px;
+    border:1.5px solid var(--line);background:#FEFBF8;color:var(--ink);outline:none;transition:border-color .15s ease;
+  }
+  .addrow input:focus{border-color:var(--coral);background:#fff;}
+  .empty{font-size:14px;color:var(--muted);padding:14px 4px;text-align:center;}
+  .sample-strip{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;
+    padding:10px 13px;border-radius:14px;background:var(--lemon-soft);font-size:12.8px;color:#8A6B14;
+  }
+  .sample-strip button{
+    margin-left:auto;min-height:36px;padding:0 12px;border-radius:10px;
+    background:#fff;border:1.5px solid #F0DCA4;color:#8A6B14;font-size:12.8px;font-weight:700;
+  }
+
+  .kcard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  @media (max-width:640px){ .kcard-grid{grid-template-columns:repeat(2,1fr);} }
+  .kcard{
+    position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;
+    padding:12px 8px 10px;border-radius:20px;background:#FFFBFC;
+    border:2px solid var(--line);min-height:132px;
+    transition:transform .14s ease, border-color .14s ease;
+  }
+  @media (max-width:640px){ .kcard{min-height:152px;padding:14px 8px 12px;} }
+  .kcard:active{transform:scale(.95);}
+  .kcard.is-learned{background:#F3FCF7;border-color:#BFEBD2;}
+  .kcard-art{display:block;width:66px;height:66px;}
+  .kcard-art svg{width:100%;height:100%;display:block;}
+  @media (max-width:640px){ .kcard-art{width:78px;height:78px;} }
+  .kcard-name{font-size:17px;font-weight:800;letter-spacing:1px;}
+  .kcard-py{font-size:11.5px;color:var(--muted);letter-spacing:.4px;}
+  .kcard-badge{
+    position:absolute;top:8px;right:8px;display:inline-flex;align-items:center;
+    background:var(--mint);color:#fff;border-radius:999px;padding:3px 6px;
+  }
+  .kcard.pop{animation:pop .42s cubic-bezier(.3,1.6,.5,1);}
+  @keyframes pop{
+    0%{transform:scale(1);}35%{transform:scale(1.14) rotate(-2deg);}70%{transform:scale(.97) rotate(1deg);}100%{transform:scale(1);}
+  }
+  .ring{width:46px;height:46px;}
+  .progress-txt{font-size:13px;font-weight:800;color:#3E8F62;}
+
+  .matrix-scroll{overflow-x:auto;padding-bottom:4px;}
+  .matrix{min-width:392px;}
+  .m-row{display:grid;grid-template-columns:88px repeat(7,1fr);gap:6px;align-items:center;}
+  .m-row + .m-row{margin-top:6px;}
+  .m-head{font-size:11.5px;color:var(--muted);text-align:center;font-weight:700;line-height:1.25;}
+  .m-head b{display:block;font-size:12.5px;color:var(--ink);font-weight:800;}
+  .m-head.today b{color:var(--coral);}
+  .m-name{font-size:13px;font-weight:700;color:#5E544B;padding-left:2px;}
+  .cell{
+    height:42px;border-radius:12px;background:#F8F3EE;border:1.5px solid transparent;
+    display:flex;align-items:center;justify-content:center;color:#fff;transition:all .14s ease;
+  }
+  .cell:active{transform:scale(.9);}
+  .cell.on{background:var(--mint);border-color:var(--mint);box-shadow:0 3px 9px rgba(98,201,140,.28);}
+  .cell.today-col{background:#FFF3EE;border-color:#FFE1D8;}
+  .cell.on.today-col{background:var(--mint);border-color:var(--mint);}
+
+  .points-box{
+    display:flex;align-items:center;gap:14px;
+    background:linear-gradient(135deg,#FFF3D8,#FFE3C0);
+    border-radius:18px;padding:16px 18px;margin-bottom:14px;
+  }
+  .points-num{font-size:34px;font-weight:900;color:#B8791A;line-height:1;letter-spacing:-1px;}
+  .points-lbl{font-size:12.5px;color:#A67C31;font-weight:700;}
+  .points-side{margin-left:auto;text-align:right;font-size:12px;color:#A67C31;line-height:1.6;}
+  .reward{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:15px;background:#FDFAF7;border:1.5px solid var(--line);}
+  .reward + .reward{margin-top:8px;}
+  .reward-name{font-size:14.5px;font-weight:650;flex:1;min-width:0;}
+  .reward-cost{font-size:13px;font-weight:800;color:#B8791A;background:var(--lemon-soft);border-radius:9px;padding:3px 9px;white-space:nowrap;}
+  .reward button{min-height:40px;padding:0 14px;border-radius:11px;font-size:13.5px;font-weight:800;background:#fff;border:1.5px solid #FFD9A8;color:#B8791A;}
+  .reward button.ok{background:var(--coral);border-color:var(--coral);color:#fff;}
+  .reward button.no{opacity:.45;}
+  .log-line{font-size:12.5px;color:var(--muted);padding:6px 2px;display:flex;gap:8px;}
+  .log-line span:last-child{margin-left:auto;color:#B8791A;font-weight:700;}
+
+  .growth-form{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:12px;}
+  .g-modes{display:flex;gap:6px;margin:2px 0 8px;}
+  .g-mode{border:1.5px solid #E3D5C4;background:#fff;color:#8E8178;border-radius:999px;
+    padding:7px 16px;font-size:13px;font-weight:700;min-height:34px;cursor:pointer;}
+  .g-mode.on{background:#4EC5F1;border-color:#4EC5F1;color:#fff;}
+  .growth-form input{
+    min-height:50px;padding:0 13px;border-radius:14px;border:1.5px solid var(--line);
+    background:#FEFBF8;outline:none;min-width:0;
+  }
+  .growth-form input:focus{border-color:var(--blue);background:#fff;}
+  .chart-wrap{background:#FAFBFE;border-radius:16px;padding:10px 6px 4px;margin-bottom:8px;}
+  .chart-wrap svg{width:100%;height:auto;display:block;}
+  .ms-item{display:flex;gap:10px;padding:9px 2px;font-size:14px;border-bottom:1px dashed #F1E6DB;}
+  .ms-item:last-child{border-bottom:none;}
+  .ms-item .d{font-size:12px;color:var(--muted);white-space:nowrap;padding-top:2px;font-weight:600;}
+  .ms-item .t{flex:1;min-width:0;word-break:break-word;}
+  .tip{font-size:12.5px;color:var(--muted);line-height:1.6;}
+
+  .backup-bar{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:var(--blue-soft);border:1.5px solid #CDEBF9;border-radius:16px;
+    padding:11px 14px;margin-bottom:14px;font-size:13px;color:#1C6E8C;
+  }
+  .backup-bar button{
+    min-height:36px;padding:0 12px;border-radius:10px;background:#fff;
+    border:1.5px solid #CDEBF9;color:#1C6E8C;font-size:12.8px;font-weight:700;margin-left:auto;
+  }
+
+  .modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(58,50,44,.42);}
+  .modal.show{display:flex;}
+  .modal-box{background:#fff;border-radius:24px;padding:22px;width:100%;max-width:420px;box-shadow:var(--shadow-lg);max-height:86vh;overflow:auto;}
+  .modal-box h3{margin:0 0 4px;font-size:18px;}
+  .modal-box .desc{font-size:13.5px;color:var(--muted);margin:0 0 16px;line-height:1.6;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13px;font-weight:700;color:#6F6459;margin-bottom:6px;}
+  .field input{width:100%;min-height:50px;padding:0 14px;border-radius:14px;border:1.5px solid var(--line);background:#FEFBF8;outline:none;}
+  .field input:focus{border-color:var(--coral);background:#fff;}
+  .modal-actions{display:flex;gap:8px;margin-top:18px;}
+  .modal-actions .btn{flex:1;min-height:50px;}
+  .danger{background:#FFF1EE;border-color:#FFD3C8;color:#D8452B;}
+  .settings-list{display:grid;gap:8px;margin-top:4px;}
+  .settings-list .btn{justify-content:flex-start;width:100%;}
+  .toast{
+    position:fixed;left:50%;bottom:calc(26px + env(safe-area-inset-bottom));
+    transform:translate(-50%,20px);z-index:80;background:#3A322C;color:#fff;
+    border-radius:14px;padding:11px 18px;font-size:14px;font-weight:600;
+    box-shadow:0 10px 28px rgba(58,50,44,.3);opacity:0;transition:all .22s ease;
+    pointer-events:none;max-width:86vw;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0);}
+  .stage-bar{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:#F5FBF7;border:1.5px solid #CDEBD8;border-radius:15px;
+    padding:10px 13px;margin:12px 0 4px;font-size:12.8px;color:#2E7A55;font-weight:600;
+  }
+  .stage-bar .dot{width:8px;height:8px;border-radius:50%;background:#62C98C;flex:0 0 auto;}
+  .stage-bar b{font-size:13.5px;color:#1F6B47;font-weight:800;}
+  .stage-bar .next{margin-left:auto;font-size:12px;color:#5E9A78;font-weight:600;}
+  .stask{display:flex;align-items:flex-start;gap:11px;padding:12px 10px;border-radius:16px;border:1.5px solid transparent;}
+  .stask + .stask{margin-top:4px;}
+  .stask:hover{background:#FDFBF8;}
+  .stask.catchup{background:#FFF6F3;border-color:#FFD9CF;}
+  .stask.done .stask-title{text-decoration:line-through;color:#B4A79C;}
+  .stask-main{min-width:0;flex:1;}
+  .stask-title{display:block;font-size:15.5px;font-weight:650;word-break:break-word;}
+  .stask-meta{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .stask.catchup .stask-meta{color:#D8452B;font-weight:600;}
+  .road{display:flex;gap:10px;padding:9px 10px;border-radius:12px;font-size:12.8px;line-height:1.5;color:#8E8178;}
+  .road.on{background:#F2FBF6;color:#1F6B47;font-weight:700;}
+  .road .rn{flex:0 0 auto;font-weight:800;width:74px;}
+  /* 学习地图 / 知识库 */
+  .kb-domains{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none;}
+  .kb-domains::-webkit-scrollbar{display:none;}
+  .kb-d{
+    flex:0 0 auto;min-height:40px;padding:0 13px;border-radius:999px;
+    background:#fff;border:1.5px solid var(--line);font-size:13.5px;font-weight:700;color:#6F6459;
+    display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  }
+  .kb-d.on{color:#fff;border-color:transparent;}
+  .kb-d .n{font-size:11px;opacity:.8;font-weight:700;}
+  .kb-stage{border:1.5px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden;background:#FEFCFA;}
+  .kb-stage.cur{border-color:#BFEBD2;background:#F8FDFA;}
+  .kb-sh{display:flex;align-items:center;gap:9px;width:100%;min-height:50px;padding:6px 13px;text-align:left;}
+  .kb-sh .age{font-size:13px;font-weight:800;color:#5E544B;flex:0 0 auto;}
+  .kb-sh .nm{font-size:12.5px;color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .kb-sh .cnt{font-size:12px;font-weight:800;color:#2E8C58;white-space:nowrap;}
+  .kb-sh .ar{transition:transform .18s ease;color:#B4A79C;display:flex;flex:0 0 auto;}
+  .kb-sh.open .ar{transform:rotate(180deg);}
+  .kb-body{padding:0 11px 8px;display:none;}
+  .kb-body.open{display:block;}
+  .kb-item{display:flex;gap:10px;align-items:flex-start;padding:10px 5px;}
+  .kb-item + .kb-item{border-top:1px dashed #F1E6DB;}
+  .kb-k{
+    width:24px;height:24px;border-radius:8px;flex:0 0 auto;margin-top:2px;
+    border:2px solid #DCD0C4;background:#fff;color:#fff;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .kb-k.on{background:var(--mint);border-color:var(--mint);}
+  .kb-txt{flex:1;min-width:0;}
+  .kb-n{display:block;font-size:14.5px;font-weight:650;word-break:break-word;}
+  .kb-item.done .kb-n{color:#B4A79C;text-decoration:line-through;}
+  .kb-h{display:block;font-size:12.3px;color:var(--muted);margin-top:2px;line-height:1.45;}
+  .kb-add{
+    flex:0 0 auto;min-height:32px;padding:0 9px;border-radius:9px;background:#fff;
+    border:1.5px solid var(--line);color:#8E8178;font-size:12px;font-weight:700;white-space:nowrap;
+  }
+  .kb-add:active{transform:scale(.94);}
+  .kb-sum{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px;}
+  .card-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  .card-actions .btn{width:100%;padding:0 12px;}
+
+  /* ===== 宝宝模式：全屏大图卡 ===== */
+  .baby{
+    position:fixed;inset:0;z-index:90;display:none;flex-direction:column;
+    background:linear-gradient(165deg,#FFF6E8 0%,#FFEDE6 42%,#EAF7FF 100%);
+    padding:calc(12px + env(safe-area-inset-top)) 16px calc(14px + env(safe-area-inset-bottom));
+    overscroll-behavior:contain;
+  }
+  .baby.show{display:flex;}
+  .baby-top{display:flex;align-items:center;gap:10px;flex:0 0 auto;}
+  .baby-prog{
+    font-size:15px;font-weight:800;color:#8A6B14;
+    background:rgba(255,255,255,.78);border-radius:999px;padding:7px 15px;
+    box-shadow:0 3px 10px rgba(180,150,125,.12);
+  }
+  .baby-exit{
+    margin-left:auto;min-height:46px;padding:0 15px;border-radius:14px;
+    background:rgba(255,255,255,.82);color:#8E8178;font-size:13px;font-weight:700;
+    border:1.5px solid rgba(255,255,255,.95);transition:all .16s ease;
+  }
+  .baby-exit.holding{background:var(--coral);color:#fff;border-color:var(--coral);transform:scale(.97);}
+  .baby-stage{
+    flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px 0;
+  }
+  .baby-card{
+    width:100%;max-width:460px;background:#fff;border-radius:34px;
+    box-shadow:0 18px 50px rgba(180,150,125,.24);
+    padding:22px 18px 20px;display:flex;flex-direction:column;align-items:center;gap:4px;
+  }
+  .baby-card.swap{animation:babySwap .32s cubic-bezier(.3,1.5,.55,1);}
+  @keyframes babySwap{0%{transform:scale(.88);opacity:.25;}100%{transform:scale(1);opacity:1;}}
+  .baby-art{width:min(60vw,52vh,320px);height:min(60vw,52vh,320px);flex:0 0 auto;}
+  .baby-art svg{width:100%;height:100%;display:block;}
+  .baby-name{font-size:clamp(36px,9vw,58px);font-weight:900;letter-spacing:3px;line-height:1.12;margin-top:2px;}
+  .baby-py{font-size:clamp(16px,3.6vw,22px);color:#9C8B7C;letter-spacing:2px;}
+  .baby-gain{
+    align-self:center;margin-top:6px;font-size:14px;font-weight:800;color:#2E8C58;
+    background:var(--mint-soft);border-radius:999px;padding:3px 12px;opacity:0;transition:opacity .2s ease;
+  }
+  .baby-gain.on{opacity:1;}
+  .baby-nav{display:flex;align-items:center;justify-content:center;gap:14px;flex:0 0 auto;margin-top:6px;}
+  .baby-arrow{
+    width:78px;height:78px;border-radius:50%;background:#fff;color:#5E544B;
+    box-shadow:0 9px 24px rgba(180,150,125,.24);
+    display:flex;align-items:center;justify-content:center;transition:transform .12s ease;
+  }
+  .baby-arrow:active{transform:scale(.9);}
+  .baby-say{
+    min-height:60px;padding:0 24px;border-radius:22px;background:var(--coral);color:#fff;
+    font-size:16.5px;font-weight:800;box-shadow:0 9px 22px rgba(255,122,89,.32);
+    display:flex;align-items:center;gap:7px;
+  }
+  .baby-say:active{transform:scale(.96);}
+  .baby-tip{margin:10px 0 0;text-align:center;font-size:12.5px;color:#A2907F;flex:0 0 auto;}
+  body.baby-on{overflow:hidden;}
+  body.baby-on .toast{bottom:calc(150px + env(safe-area-inset-bottom));z-index:95;}
+
+  /* ===== 成长节点（按月龄的关键事件） ===== */
+  .age-notice{
+    display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+    background:#FFF6E8;border:1.5px solid #FBE0B8;border-radius:15px;
+    padding:10px 13px;margin:10px 0 2px;font-size:13px;color:#8A6B14;line-height:1.45;
+  }
+  .age-notice.due{background:#FFF3EF;border-color:#FFD3C8;color:#D8452B;}
+  .age-notice .ic{flex:0 0 auto;display:flex;}
+  .age-notice .txt{flex:1;min-width:0;font-weight:600;}
+  .age-notice .go{
+    flex:0 0 auto;min-height:32px;padding:0 10px;border-radius:9px;background:#fff;
+    border:1.5px solid #FBE0B8;color:inherit;font-size:12px;font-weight:800;white-space:nowrap;
+  }
+  .age-notice.due .go{border-color:#FFD3C8;}
+  .age-list{margin:6px 0 10px;}
+  .age-item{border:1.5px solid var(--line);border-radius:16px;margin-bottom:8px;background:#FEFCFA;overflow:hidden;}
+  .age-item.next{border-color:#FBE0B8;background:#FFFCF7;}
+  .age-item.due{border-color:#FFD3C8;background:#FFF8F5;}
+  .age-item.done{background:#FAF8F5;border-color:#EFE7DD;}
+  .age-item.done .age-ttl,.age-item.done .age-age{color:#B4A79C;}
+  .age-head{display:flex;align-items:center;gap:9px;width:100%;min-height:52px;padding:8px 12px;text-align:left;}
+  .age-dot{
+    flex:0 0 auto;width:27px;height:27px;border-radius:9px;background:#F3EDE6;color:#8E8178;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .age-item.next .age-dot{background:#FFF1D6;color:#B8791A;}
+  .age-item.due .age-dot{background:#FFE4DC;color:#D8452B;}
+  .age-item.done .age-dot{background:#E7F6EE;color:#2E8C58;}
+  .age-age{flex:0 0 auto;min-width:50px;font-size:12.5px;font-weight:800;color:#5E544B;}
+  .age-ttl{flex:1;min-width:0;font-size:13.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .age-when{flex:0 0 auto;font-size:11.5px;font-weight:800;color:#A2907F;white-space:nowrap;}
+  .age-item.next .age-when{color:#B8791A;}
+  .age-item.due .age-when{color:#D8452B;}
+  .age-item.done .age-when{color:#2E8C58;}
+  .age-ar{flex:0 0 auto;color:#C4B8AC;display:flex;transition:transform .18s ease;}
+  .age-head.open .age-ar{transform:rotate(180deg);}
+  .age-body{display:none;padding:2px 12px 12px;}
+  .age-body.open{display:block;}
+  .age-sec{margin-top:10px;}
+  .age-sec-h{display:flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;letter-spacing:.4px;color:#8E8178;margin-bottom:3px;}
+  .age-li{display:flex;gap:7px;font-size:13px;line-height:1.5;color:#5E544B;padding:2px 0;}
+  .age-li::before{content:"";flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:#DCD0C4;margin-top:7px;}
+  .age-item.done .age-li{color:#A2907F;}
+  .age-acts{display:flex;gap:8px;margin-top:12px;}
+  .age-acts button{
+    flex:1;min-height:42px;border-radius:11px;font-size:13px;font-weight:800;
+    background:#fff;border:1.5px solid var(--line);color:#6F6459;
+  }
+  .age-acts button.on{background:var(--mint-soft);border-color:#BFEBD2;color:#2E8C58;}
+  .age-note{font-size:11.8px;color:#A2907F;line-height:1.55;margin:6px 2px 16px;}
+
+  .foot{text-align:center;font-size:12px;color:#B4A79C;padding:6px 0 0;line-height:1.8;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-badge">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21c0-6 3-9 8-10-1 7-4 10-8 10z" fill="#fff" fill-opacity=".35"/>
+          <path d="M12 21C12 14 9 8 4 5c0 8 3 14 8 16z" fill="#fff" fill-opacity=".65"/>
+          <path d="M12 21v-6"/>
+        </svg>
+      </div>
+      <div class="brand-txt">
+        <h1 id="brandTitle">宝宝启蒙台</h1>
+        <p id="brandSub">2 岁 · 认知 · 语言 · 习惯 · 陪伴</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="btn" id="btnExport" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+        导出备份
+      </button>
+      <button class="btn" id="btnImport" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M4 20h16"/></svg>
+        导入
+      </button>
+      <button class="btn btn-primary" id="btnBaby" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="13.5" rx="2.8"/><path d="M8.5 21h7"/><path d="M12 18v3"/></svg>
+        宝宝模式
+      </button>
+      <button class="btn" id="btnSettings" type="button" aria-label="设置">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.6 1.6 0 00-1.8-.3 1.6 1.6 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.6 1.6 0 00-1-1.5 1.6 1.6 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.6 1.6 0 00.3-1.8 1.6 1.6 0 00-1.5-1H3a2 2 0 110-4h.1a1.6 1.6 0 001.5-1 1.6 1.6 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.6 1.6 0 001.8.3H9a1.6 1.6 0 001-1.5V3a2 2 0 114 0v.1a1.6 1.6 0 001 1.5 1.6 1.6 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.6 1.6 0 00-.3 1.8V9a1.6 1.6 0 001.5 1H21a2 2 0 110 4h-.1a1.6 1.6 0 00-1.5 1z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav" id="nav">
+    <a href="#secToday" class="on">今天要处理</a>
+    <a href="#secCards">认知卡</a>
+    <a href="#secKB">学习地图</a>
+    <a href="#secHabits">习惯打卡</a>
+    <a href="#secPoints">积分奖励</a>
+    <a href="#secGrowth">成长记录</a>
+  </div>
+
+  <div class="backup-bar" id="backupBar" style="display:none;">
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#1C6E8C" stroke-width="2.2" stroke-linecap="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9.2"/></svg>
+    <span id="backupBarTxt">数据已经攒了不少，建议导出一份备份。</span>
+    <button id="btnBackupNow" type="button">去备份</button>
+  </div>
+
+  <div class="cols">
+    <div>
+      <section class="card today" id="secToday">
+        <div class="card-h">
+          <div class="ic" style="background:var(--coral-soft);">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#D8452B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3"/><rect x="3.5" y="5.5" width="17" height="15" rx="3.5"/><path d="M3.5 10.5h17"/></svg>
+          </div>
+          <div>
+            <h2>今天要处理</h2>
+            <p class="sub" id="todayDateSub"></p>
+          </div>
+        </div>
+        <div class="stage-bar" id="stageBar"></div>
+        <div class="chips" id="todayChips"></div>
+        <div class="age-notice" id="ageNotice" style="display:none;">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 8v4.5M12 16.5v.5"/><circle cx="12" cy="12" r="9.2"/></svg>
+          </span>
+          <span class="txt" id="ageNoticeTxt"></span>
+          <button class="go" id="btnAgeNoticeGo" type="button">去看看</button>
+        </div>
+        <div id="stageTaskList"></div>
+        <div class="sec-label" id="customLabel" style="display:none;">我自己加的</div>
+        <div id="todayList"></div>
+        <div class="addrow">
+          <input id="taskInput" type="text" maxlength="60" placeholder="加一件今天想陪娃做的事…" aria-label="新增待办">
+          <button class="btn btn-primary btn-big" id="btnAddTask" type="button">添加</button>
+        </div>
+        <div class="sample-strip" id="sampleStrip" style="display:none;">
+          <span>现在展示的是示例数据，方便先看效果。</span>
+          <button id="btnClearSample" type="button">清空示例</button>
+        </div>
+      </section>
+
+      <section class="card" id="secCards">
+        <div class="card-h">
+          <div class="ic" style="background:var(--pink-soft);">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#E0568A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="12" height="15" rx="2.6"/><path d="M18 8v10.5a2 2 0 01-2 2H7.5"/></svg>
+          </div>
+          <div>
+            <h2>认知卡</h2>
+            <p class="sub">点一下，会念给宝宝听</p>
+          </div>
+          <div class="right">
+            <span class="progress-txt" id="cardProgressTxt">0 / 12</span>
+            <div class="ic" id="cardProgress"></div>
+          </div>
+        </div>
+        <p class="hh" id="cardHint"></p>
+        <div class="kcard-grid" id="cardGrid"></div>
+        <div class="card-actions">
+          <button class="btn btn-big" id="btnRandomCard" type="button">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M21 3l-7.5 7.5"/><path d="M8 21H3v-5"/><path d="M3 21l7.5-7.5"/><path d="M21 16v5h-5"/><path d="M14 14l7 7"/><path d="M3 8V3h5"/><path d="M10 10L3 3"/></svg>
+            随机抽一张
+          </button>
+          <button class="btn btn-big btn-mint" id="btnBabyFromCards" type="button">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="13.5" rx="2.8"/><path d="M8.5 21h7"/></svg>
+            全屏看大图
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section class="card" id="secHabits">
+        <div class="card-h">
+          <div class="ic" style="background:var(--mint-soft);">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#2E8C58" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div>
+            <h2>习惯打卡</h2>
+            <p class="sub">最近 7 天，点格子就打勾</p>
+          </div>
+        </div>
+        <div class="chips" id="habitChips" style="margin:10px 0 12px;"></div>
+        <div class="matrix-scroll"><div class="matrix" id="habitMatrix"></div></div>
+      </section>
+
+      <section class="card" id="secPoints">
+        <div class="card-h">
+          <div class="ic" style="background:var(--lemon-soft);">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="#E0A21B"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-.9z"/></svg>
+          </div>
+          <div>
+            <h2>积分奖励</h2>
+            <p class="sub">今日流程 +2 · 打卡 +2 · 待办 +3 · 认卡 +5 · 掌握 +1</p>
+          </div>
+        </div>
+        <div class="points-box">
+          <div>
+            <div class="points-num" id="pointsNum">0</div>
+            <div class="points-lbl">可用星星</div>
+          </div>
+          <div class="points-side" id="pointsSide"></div>
+        </div>
+        <div id="rewardList"></div>
+        <div id="pointsLog" style="margin-top:10px;"></div>
+      </section>
+
+      <section class="card" id="secGrowth">
+        <div class="card-h">
+          <div class="ic" style="background:var(--blue-soft);">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#1C87B3" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6"/><path d="M4 19h16"/><path d="M7.5 15l3.5-4.5 3 2.5 4.5-6"/></svg>
+          </div>
+          <div>
+            <h2>成长记录</h2>
+            <p class="sub">身高体重 + 里程碑</p>
+          </div>
+        </div>
+        <div class="sec-label">成长节点 · 接下来要办的事</div>
+        <div class="age-list" id="ageList"></div>
+        <p class="age-note">疫苗剂次和体检项目各地略有差异，以《预防接种证》预约日期和社区卫生服务中心通知为准；「该会什么」是筛查提示，不是诊断，落后两三个月很常见，明显落后再找儿保科。</p>
+        <div class="sec-label">身高体重</div>
+        <div class="growth-form">
+          <input id="gHeight" type="number" inputmode="decimal" step="0.1" placeholder="身高 cm" aria-label="身高">
+          <input id="gWeight" type="number" inputmode="decimal" step="0.1" placeholder="体重 kg" aria-label="体重">
+          <button class="btn btn-mint" id="btnAddGrowth" type="button" style="min-height:50px;">记录</button>
+        </div>
+        <div class="g-modes">
+          <button class="g-mode on" id="gModeH" type="button">身高</button>
+          <button class="g-mode" id="gModeW" type="button">体重</button>
+        </div>
+        <div class="chart-wrap" id="growthChart"></div>
+        <div id="growthList" style="margin-bottom:14px;"></div>
+        <div class="sec-label">成长里程碑</div>
+        <div id="milestoneList"></div>
+        <div class="addrow" style="margin-top:10px;">
+          <input id="msInput" type="text" maxlength="50" placeholder="记一件值得记的小事…" aria-label="新增里程碑">
+          <button class="btn btn-big" id="btnAddMs" type="button">记录</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="card" id="secKB">
+    <div class="card-h">
+      <div class="ic" style="background:#F3EEFF;">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#7A5AC8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H11v17H6.5A2.5 2.5 0 004 22z"/><path d="M20 5.5A2.5 2.5 0 0017.5 3H13v17h4.5A2.5 2.5 0 0120 22z"/><path d="M15 7.5h2.5M15 11h2.5"/></svg>
+      </div>
+      <div>
+        <h2>学习地图</h2>
+        <p class="sub">1-6 岁 · 8 大领域 · 到小学前的整体内容库</p>
+      </div>
+      <div class="right">
+        <span class="progress-txt" id="kbProgressTxt">0 / 0</span>
+        <div class="ic" id="kbProgress"></div>
+      </div>
+    </div>
+    <p class="hh">每个阶段「该会什么、怎么陪」都在这。勾上就是掌握了，也能一键加进今天清单。</p>
+    <div class="kb-sum" id="kbSummary"></div>
+    <div class="kb-domains" id="kbDomains"></div>
+    <div id="kbStages"></div>
+    <p class="tip" style="margin:10px 2px 0;">这是通用参考，不是考卷。同月龄孩子差半岁很正常，跳着看、按兴趣来，别拿清单跟自己较劲。</p>
+  </section>
+
+  <div class="foot">
+    数据存在这台设备的浏览器里（localStorage），不上传任何服务器 · 建议定期导出备份<br>
+    记录一次身高体重、打一个勾，都是在帮孩子留证据。
+  </div>
+</div>
+
+<div class="modal" id="settingsModal">
+  <div class="modal-box">
+    <h3>设置</h3>
+    <p class="desc">生日决定当前阶段，任务和打卡项会随阶段自动更新。</p>
+    <div class="field">
+      <label for="nameInput">宝宝小名</label>
+      <input id="nameInput" type="text" maxlength="12" placeholder="比如：小石头">
+    </div>
+    <div class="field">
+      <label for="birthInput">宝宝生日</label>
+      <input id="birthInput" type="date">
+    </div>
+    <div class="sec-label">成长台阶（一路到小学前）</div>
+    <div id="stageRoadmap"></div>
+    <div class="settings-list">
+      <button class="btn" id="setExport" type="button">导出 JSON 备份</button>
+      <button class="btn" id="setImport" type="button">从备份文件恢复</button>
+      <button class="btn danger" id="setClearSample" type="button">清空示例数据</button>
+      <button class="btn danger" id="setClearAll" type="button">清空全部数据</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="setSave" type="button">保存</button>
+      <button class="btn" id="setCancel" type="button">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="confirmModal">
+  <div class="modal-box">
+    <h3 id="cfTitle">确认操作</h3>
+    <p class="desc" id="cfDesc"></p>
+    <div class="modal-actions">
+      <button class="btn" id="cfCancel" type="button">再想想</button>
+      <button class="btn danger" id="cfOk" type="button">确认</button>
+    </div>
+  </div>
+</div>
+
+<!-- 宝宝模式：全屏大图卡 -->
+<div class="baby" id="babyMode" aria-hidden="true" role="dialog" aria-label="宝宝模式">
+  <div class="baby-top">
+    <div class="baby-prog" id="babyProg">1 / 1</div>
+    <button class="baby-exit" id="btnBabyExit" type="button">长按退出</button>
+  </div>
+  <div class="baby-stage" id="babyStage">
+    <div class="baby-card" id="babyCard"></div>
+  </div>
+  <div class="baby-nav">
+    <button class="baby-arrow" id="btnBabyPrev" type="button" aria-label="上一张">
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button class="baby-say" id="btnBabySay" type="button">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6.5 9H3v6h3.5L11 19z"/><path d="M15.5 8.5a5 5 0 010 7"/><path d="M18.5 6a8.5 8.5 0 010 12"/></svg>
+      念一遍
+    </button>
+    <button class="baby-arrow" id="btnBabyNext" type="button" aria-label="下一张">
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+  <p class="baby-tip">点图片听声音 · 左右滑动翻页 · 长按右上角退出</p>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="importFile" accept=".json,application/json" hidden>
+<script>
+(function(){
+  "use strict";
+
+  /* ===== 常量 ===== */
+  var STORE_KEY = 'wb_toddler_v2';
+  var WEEK = ['日','一','二','三','四','五','六'];
+
+  var IC = {
+    check: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l4.8 4.8L19.5 6.8"/></svg>',
+    x: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    alert: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L2.6 17.4A1.9 1.9 0 004.3 20.3h15.4a1.9 1.9 0 001.7-2.9L13.7 3.9a1.9 1.9 0 00-3.4 0z"/><path d="M12 8.5v4.5M12 16.6v.4"/></svg>'
+  };
+
+  /* ===== 认知卡素材（全部内联 SVG） ===== */
+  var HZF = 'font-family=-apple-system,PingFang SC,Hiragino Sans GB,sans-serif';
+  var CARD_LIST = [
+    { id:'apple', name:'苹果', py:'píng guǒ', svg:'<svg viewBox="0 0 120 120"><path d="M60 42c-7-6-19-9-27-1-9 9-7 25 0 36 5 9 13 15 20 15 3 0 5-1 7-1s4 1 7 1c7 0 15-6 20-15 7-11 9-27 0-36-8-8-20-5-27 1z" fill="#FF6B6B"/><path d="M60 42c0-9 2-15 6-19" stroke="#7BC96F" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse cx="76" cy="24" rx="12" ry="6.5" fill="#7BC96F" transform="rotate(-16 76 24)"/><ellipse cx="43" cy="60" rx="6" ry="10" fill="#fff" opacity=".38" transform="rotate(-22 43 60)"/></svg>' },
+    { id:'banana', name:'香蕉', py:'xiāng jiāo', svg:'<svg viewBox="0 0 120 120"><path d="M34 30c2 32 22 55 52 58" stroke="#FFD93D" stroke-width="19" fill="none" stroke-linecap="round"/><path d="M34 30c2 32 22 55 52 58" stroke="#FFE98A" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"/><circle cx="34" cy="28" r="6" fill="#C79A2E"/><circle cx="87" cy="89" r="5" fill="#C79A2E"/></svg>' },
+    { id:'cat', name:'小猫', py:'xiǎo māo', svg:'<svg viewBox="0 0 120 120"><path d="M33 50L28 24l23 15z" fill="#F0A65C"/><path d="M87 50l5-26-23 15z" fill="#F0A65C"/><circle cx="60" cy="66" r="30" fill="#FFC98B"/><circle cx="49" cy="62" r="4.6" fill="#4A3C33"/><circle cx="71" cy="62" r="4.6" fill="#4A3C33"/><path d="M55 74q5 5 10 0" stroke="#4A3C33" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M30 64h-11M30 73l-10 4M90 64h11M90 73l10 4" stroke="#4A3C33" stroke-width="2.4" stroke-linecap="round" opacity=".8"/></svg>' },
+    { id:'dog', name:'小狗', py:'xiǎo gǒu', svg:'<svg viewBox="0 0 120 120"><ellipse cx="32" cy="58" rx="11" ry="21" fill="#A97C5B"/><ellipse cx="88" cy="58" rx="11" ry="21" fill="#A97C5B"/><circle cx="60" cy="62" r="29" fill="#D9A06B"/><circle cx="50" cy="58" r="4.4" fill="#3B2E25"/><circle cx="70" cy="58" r="4.4" fill="#3B2E25"/><ellipse cx="60" cy="74" rx="7.5" ry="5.5" fill="#3B2E25"/><path d="M60 80v5" stroke="#3B2E25" stroke-width="3" stroke-linecap="round"/><ellipse cx="67" cy="86" rx="5" ry="6" fill="#F08A8A"/></svg>' },
+    { id:'sun', name:'太阳', py:'tài yáng', svg:'<svg viewBox="0 0 120 120"><g stroke="#FFB01F" stroke-width="6" stroke-linecap="round"><path d="M60 12v12M60 96v12M12 60h12M96 60h12M26 26l8.5 8.5M85.5 85.5L94 94M94 26l-8.5 8.5M34.5 85.5L26 94"/></g><circle cx="60" cy="60" r="25" fill="#FFC93C"/><circle cx="51" cy="56" r="3" fill="#A87400"/><circle cx="69" cy="56" r="3" fill="#A87400"/><path d="M52 66q8 7 16 0" stroke="#A87400" stroke-width="3" fill="none" stroke-linecap="round"/></svg>' },
+    { id:'ball', name:'小球', py:'xiǎo qiú', svg:'<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="34" fill="#4EC5F1"/><path d="M36 33c15 19 15 35 0 54" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity=".9"/><path d="M84 33c-15 19-15 35 0 54" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity=".9"/><ellipse cx="47" cy="42" rx="9" ry="5.5" fill="#fff" opacity=".5" transform="rotate(-32 47 42)"/></svg>' },
+    { id:'moon', name:'月亮', py:'yuè liang', svg:'<svg viewBox="0 0 120 120"><path d="M72 16c-21 7-32 26-32 42s11 35 32 42c-13-11-19-26-19-42s6-31 19-42z" fill="#FFD86B"/><path d="M88 26l2.4 5 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z" fill="#FFEBB0"/></svg>' },
+    { id:'car', name:'小车', py:'xiǎo chē', svg:'<svg viewBox="0 0 120 120"><rect x="14" y="58" width="92" height="26" rx="11" fill="#FF6B6B"/><path d="M36 58l10-17h28l10 17z" fill="#FF9B8A"/><rect x="43" y="46" width="12" height="12" rx="3.5" fill="#D6F1FF"/><rect x="62" y="46" width="12" height="12" rx="3.5" fill="#D6F1FF"/><circle cx="35" cy="86" r="10" fill="#4A3C33"/><circle cx="85" cy="86" r="10" fill="#4A3C33"/><circle cx="35" cy="86" r="3.8" fill="#fff"/><circle cx="85" cy="86" r="3.8" fill="#fff"/><circle cx="103" cy="68" r="4" fill="#FFE6A8"/></svg>' },
+    { id:'flower', name:'红花', py:'hóng huā', svg:'<svg viewBox="0 0 120 120"><path d="M60 72v34" stroke="#7BC96F" stroke-width="6" stroke-linecap="round"/><path d="M60 92c-11 3-18-1-20-9 11-4 18 0 20 9z" fill="#7BC96F"/><g fill="#FF7A9C"><circle cx="60" cy="32" r="12"/><circle cx="38" cy="48" r="12"/><circle cx="82" cy="48" r="12"/><circle cx="47" cy="68" r="12"/><circle cx="73" cy="68" r="12"/></g><circle cx="60" cy="50" r="10.5" fill="#FFD93D"/></svg>' },
+    { id:'leaf', name:'树叶', py:'shù yè', svg:'<svg viewBox="0 0 120 120"><path d="M28 92C28 52 58 24 92 26c6 34-18 68-64 66z" fill="#7BC96F"/><path d="M30 90c16-20 36-42 58-60" stroke="#4E9E48" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M46 66c-2 10-2 16 0 24M62 50c-1 9-1 14 1 20" stroke="#4E9E48" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".8"/></svg>' },
+    { id:'star', name:'星星', py:'xīng xing', svg:'<svg viewBox="0 0 120 120"><polygon points="60,24 69.4,49.1 96.1,50.3 75.2,66.9 82.3,92.7 60,78 37.7,92.7 44.8,66.9 23.9,50.3 50.6,49.1" fill="#FFC93C"/><polygon points="60,40 65,52 78,52.6 68,61 72,73 60,66 48,73 52,61 42,52.6 55,52" fill="#FFE07A" opacity=".75"/></svg>' },
+    { id:'umbrella', name:'雨伞', py:'yǔ sǎn', svg:'<svg viewBox="0 0 120 120"><path d="M14 62a46 46 0 0 1 92 0c-7.6-6.4-15.3-6.4-23 0-7.6-6.4-15.3-6.4-23 0-7.6-6.4-15.3-6.4-23 0-7.6-6.4-15.3-6.4-23 0z" fill="#5FC8F5"/><path d="M60 62v28a11 11 0 0 0 22 0" stroke="#4A3C33" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="60" cy="15" r="4.2" fill="#5FC8F5"/></svg>' },
+    /* 形状（3 岁起） */
+    { id:'shape-circle', name:'圆形', py:'yuán xíng', svg:'<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="38" fill="#4EC5F1"/><circle cx="60" cy="60" r="38" fill="none" stroke="#2EA8D8" stroke-width="3"/></svg>' },
+    { id:'shape-square', name:'方形', py:'fāng xíng', svg:'<svg viewBox="0 0 120 120"><rect x="22" y="22" width="76" height="76" rx="10" fill="#FF9B6B"/><rect x="22" y="22" width="76" height="76" rx="10" fill="none" stroke="#E3773F" stroke-width="3"/></svg>' },
+    { id:'shape-triangle', name:'三角形', py:'sān jiǎo xíng', svg:'<svg viewBox="0 0 120 120"><path d="M60 20l42 76H18z" fill="#62C98C" stroke="#3FA76B" stroke-width="3" stroke-linejoin="round"/></svg>' },
+    { id:'shape-diamond', name:'菱形', py:'líng xíng', svg:'<svg viewBox="0 0 120 120"><path d="M60 16l44 44-44 44-44-44z" fill="#A78BFA" stroke="#8266D8" stroke-width="3" stroke-linejoin="round"/></svg>' },
+    /* 数字（4 岁起） */
+    { id:'num1', name:'一', py:'yī', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="20" fill="#FFF4DC"/><text x="60" y="74" text-anchor="middle" font-size="54" font-weight="800" fill="#B8791A" ' + HZF + '>1</text><circle cx="60" cy="94" r="6" fill="#FFC93C"/></svg>' },
+    { id:'num2', name:'二', py:'èr', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="20" fill="#FFF4DC"/><text x="60" y="74" text-anchor="middle" font-size="54" font-weight="800" fill="#B8791A" ' + HZF + '>2</text><circle cx="49" cy="94" r="6" fill="#FFC93C"/><circle cx="71" cy="94" r="6" fill="#FFC93C"/></svg>' },
+    { id:'num3', name:'三', py:'sān', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="20" fill="#FFF4DC"/><text x="60" y="74" text-anchor="middle" font-size="54" font-weight="800" fill="#B8791A" ' + HZF + '>3</text><circle cx="42" cy="94" r="6" fill="#FFC93C"/><circle cx="60" cy="94" r="6" fill="#FFC93C"/><circle cx="78" cy="94" r="6" fill="#FFC93C"/></svg>' },
+    { id:'num4', name:'四', py:'sì', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="20" fill="#FFF4DC"/><text x="60" y="74" text-anchor="middle" font-size="54" font-weight="800" fill="#B8791A" ' + HZF + '>4</text><circle cx="35" cy="94" r="5.5" fill="#FFC93C"/><circle cx="52" cy="94" r="5.5" fill="#FFC93C"/><circle cx="69" cy="94" r="5.5" fill="#FFC93C"/><circle cx="86" cy="94" r="5.5" fill="#FFC93C"/></svg>' },
+    { id:'num5', name:'五', py:'wǔ', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="20" fill="#FFF4DC"/><text x="60" y="74" text-anchor="middle" font-size="54" font-weight="800" fill="#B8791A" ' + HZF + '>5</text><circle cx="28" cy="94" r="5" fill="#FFC93C"/><circle cx="44" cy="94" r="5" fill="#FFC93C"/><circle cx="60" cy="94" r="5" fill="#FFC93C"/><circle cx="76" cy="94" r="5" fill="#FFC93C"/><circle cx="92" cy="94" r="5" fill="#FFC93C"/></svg>' },
+    /* 汉字（4-6 岁） */
+    { id:'hz-ren', name:'人', py:'rén', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="14" fill="#F7F3FF"/><g stroke="#DDD3F7" stroke-width="1.6" stroke-dasharray="5 5"><path d="M60 12v96M12 60h96"/></g><text x="60" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#6B4FB0" ' + HZF + '>人</text></svg>' },
+    { id:'hz-kou', name:'口', py:'kǒu', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="14" fill="#F7F3FF"/><g stroke="#DDD3F7" stroke-width="1.6" stroke-dasharray="5 5"><path d="M60 12v96M12 60h96"/></g><text x="60" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#6B4FB0" ' + HZF + '>口</text></svg>' },
+    { id:'hz-shou', name:'手', py:'shǒu', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="14" fill="#F7F3FF"/><g stroke="#DDD3F7" stroke-width="1.6" stroke-dasharray="5 5"><path d="M60 12v96M12 60h96"/></g><text x="60" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#6B4FB0" ' + HZF + '>手</text></svg>' },
+    { id:'hz-da', name:'大', py:'dà', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="14" fill="#F7F3FF"/><g stroke="#DDD3F7" stroke-width="1.6" stroke-dasharray="5 5"><path d="M60 12v96M12 60h96"/></g><text x="60" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#6B4FB0" ' + HZF + '>大</text></svg>' },
+    { id:'hz-xiao', name:'小', py:'xiǎo', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="14" fill="#F7F3FF"/><g stroke="#DDD3F7" stroke-width="1.6" stroke-dasharray="5 5"><path d="M60 12v96M12 60h96"/></g><text x="60" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#6B4FB0" ' + HZF + '>小</text></svg>' },
+    { id:'hz-shan', name:'山', py:'shān', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="14" fill="#F7F3FF"/><g stroke="#DDD3F7" stroke-width="1.6" stroke-dasharray="5 5"><path d="M60 12v96M12 60h96"/></g><text x="60" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#6B4FB0" ' + HZF + '>山</text></svg>' },
+    { id:'hz-shui', name:'水', py:'shuǐ', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="14" fill="#F7F3FF"/><g stroke="#DDD3F7" stroke-width="1.6" stroke-dasharray="5 5"><path d="M60 12v96M12 60h96"/></g><text x="60" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#6B4FB0" ' + HZF + '>水</text></svg>' },
+    { id:'hz-huo', name:'火', py:'huǒ', svg:'<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="14" fill="#F7F3FF"/><g stroke="#DDD3F7" stroke-width="1.6" stroke-dasharray="5 5"><path d="M60 12v96M12 60h96"/></g><text x="60" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#6B4FB0" ' + HZF + '>火</text></svg>' }
+  ];
+
+  var C_BASE = ['apple','banana','cat','dog','sun','ball','moon','car','flower','leaf','star','umbrella'];
+  var C_SHAPE = ['shape-circle','shape-square','shape-triangle','shape-diamond'];
+  var C_NUM = ['num1','num2','num3','num4','num5'];
+  var C_HZ1 = ['hz-ren','hz-kou','hz-shou','hz-da'];
+  var C_HZ2 = ['hz-xiao','hz-shan','hz-shui','hz-huo'];
+
+  /* ===== 五个成长阶段（12-72 月龄，覆盖到小学前） ===== */
+  var STAGES = [
+    {
+      key:'s1', name:'感知运动期', ageLabel:'1-2 岁', minM:12, maxM:24,
+      focus:'认物、走跑攀爬、单词萌发。一天 3 件就够，重复比花样重要。',
+      cardHint:'先认实物、说单词。一天 2-3 张，同一张看一周也不亏。',
+      tasks:[
+        { id:'s1a', title:'户外活动 1 小时（走、跑、爬上爬下）' },
+        { id:'s1b', title:'亲子共读 10 分钟（布书、洞洞书、翻翻书）' },
+        { id:'s1c', title:'指认 3 个家里常见东西（杯子、鞋、苹果）' },
+        { id:'s1d', title:'模仿游戏：拍手、挥手再见、飞吻' },
+        { id:'s1e', title:'自己拿勺吃几口（弄脏也没关系）' }
+      ],
+      habits:[
+        { id:'h1_out', name:'户外' }, { id:'h1_read', name:'共读' },
+        { id:'h1_eat', name:'自主进食' }, { id:'h1_brush', name:'刷牙(帮)' },
+        { id:'h1_sleep', name:'早睡' }
+      ],
+      cards: C_BASE.slice(0, 6)
+    },
+    {
+      key:'s2', name:'语言爆发期', ageLabel:'2-3 岁', minM:24, maxM:36,
+      focus:'词汇量暴涨、能听懂简单指令、开始如厕训练。让他自己来。',
+      cardHint:'这个阶段认得快，一天 3-5 张，把卡带到现实里指认。',
+      tasks:[
+        { id:'s2a', title:'户外 1.5 小时（跑跳、上下楼梯）' },
+        { id:'s2b', title:'共读 15 分钟，让孩子指图说话' },
+        { id:'s2c', title:'学说 5 个新词或一句短句' },
+        { id:'s2d', title:'如厕练习 2 次（不催不逼）' },
+        { id:'s2e', title:'涂鸦 5 分钟（大纸 + 粗蜡笔）' }
+      ],
+      habits:[
+        { id:'h2_out', name:'户外' }, { id:'h2_read', name:'共读' },
+        { id:'h2_eat', name:'自己吃饭' }, { id:'h2_potty', name:'如厕练习' },
+        { id:'h2_sleep', name:'早睡' }
+      ],
+      cards: C_BASE.slice(0, 12)
+    },
+    {
+      key:'s3', name:'提问探索期', ageLabel:'3-4 岁', minM:36, maxM:48,
+      focus:'整天问"为什么"、能分类比较、开始有数感。回答比纠正重要。',
+      cardHint:'加入形状和颜色，从"这是什么"升级到"哪个不一样"。',
+      tasks:[
+        { id:'s3a', title:'户外 2 小时（单脚站、抛接球）' },
+        { id:'s3b', title:'提问式共读 20 分钟（"你猜他为什么哭？"）' },
+        { id:'s3c', title:'数感：数 1-5（数楼梯、数水果）' },
+        { id:'s3d', title:'分类游戏：按颜色 / 形状 / 大小' },
+        { id:'s3e', title:'自己穿脱鞋和外套' }
+      ],
+      habits:[
+        { id:'h3_out', name:'户外' }, { id:'h3_read', name:'共读' },
+        { id:'h3_dress', name:'自己穿衣' }, { id:'h3_tidy', name:'收玩具' },
+        { id:'h3_sleep', name:'早睡' }
+      ],
+      cards: C_BASE.concat(C_SHAPE)
+    },
+    {
+      key:'s4', name:'识字敏感期', ageLabel:'4-5 岁', minM:48, maxM:60,
+      focus:'对字开始敏感、能专注 15 分钟、规则游戏。别抢跑，跟着他的兴趣走。',
+      cardHint:'认字卡一天 2-3 张，先在生活里认（招牌、包装），再上卡片。',
+      tasks:[
+        { id:'s4a', title:'户外 1 小时 + 跳绳或拍球' },
+        { id:'s4b', title:'共读 25 分钟，读完让他复述一遍' },
+        { id:'s4c', title:'认字 3-5 个（生活场景里认，不刷卡片）' },
+        { id:'s4d', title:'数感 1-20：比大小、实物加减' },
+        { id:'s4e', title:'专注游戏 15 分钟（拼图、积木，别打断）' }
+      ],
+      habits:[
+        { id:'h4_out', name:'户外' }, { id:'h4_read', name:'共读+复述' },
+        { id:'h4_focus', name:'专注 15 分' }, { id:'h4_tidy', name:'自己整理' },
+        { id:'h4_sleep', name:'早睡' }
+      ],
+      cards: C_BASE.concat(C_SHAPE, C_NUM, C_HZ1)
+    },
+    {
+      key:'s5', name:'幼小衔接期', ageLabel:'5-6 岁', minM:60, maxM:120,
+      focus:'拼音识字、10 以内加减、听指令做事。重点不是提前学，是坐得住、能自理。',
+      cardHint:'认字卡 + 拼音，一天 3-5 张，配合控笔和朗读一起做。',
+      tasks:[
+        { id:'s5a', title:'拼音 / 识字 15 分钟' },
+        { id:'s5b', title:'10 以内加减（实物过渡到口算）' },
+        { id:'s5c', title:'控笔练习 10 分钟（画线、写自己名字）' },
+        { id:'s5d', title:'听指令完成 3 步任务（拿书、放桌上、关灯）' },
+        { id:'s5e', title:'自己整理书包和文具' }
+      ],
+      habits:[
+        { id:'h5_out', name:'户外' }, { id:'h5_read', name:'朗读 15 分' },
+        { id:'h5_pen', name:'控笔练习' }, { id:'h5_bag', name:'整理书包' },
+        { id:'h5_sleep', name:'早睡' }
+      ],
+      cards: C_BASE.concat(C_SHAPE, C_NUM, C_HZ1, C_HZ2)
+    }
+  ];
+
+  /* 旧版数据迁移：习惯 id 映射 */
+  var HABIT_MIGRATE = { read:'h1_read', outdoor:'h1_out', eat:'h1_eat', brush:'h1_brush', sleep:'h1_sleep' };
+
+  /* ===== 成长节点：按月龄的关键事件（体检 / 疫苗 / 发育观察 / 安全注意） =====
+     内容依据国家免疫规划程序 + 常规儿保安排整理；
+     各地接种程序与体检项目略有差异，以《预防接种证》和社区卫生服务中心通知为准。 */
+  var AGE_EVENTS = [
+    {
+      id:'a12', m:12, title:'周岁体检 + 疫苗查漏',
+      todo:[
+        '周岁儿保体检：身高、体重、头围，加查血红蛋白（看贫血）',
+        '核对接种证：水痘疫苗第 1 剂（自费，12 月龄起可打）',
+        '开始用含氟牙膏刷牙，米粒大小，家长帮刷'
+      ],
+      watch:[
+        '能独站片刻、扶着家具走几步',
+        '会用拇指和食指捏起小丸（精细动作关键点）',
+        '会有意识地叫「爸爸」「妈妈」',
+        '听懂「不行」「给我」这类常用指令'
+      ],
+      care:[
+        '会扶走了：楼梯口装护栏，阳台门常关',
+        '热水壶、药品、清洁剂全部上移或上锁',
+        '所有插座装保护盖，电线收进线槽'
+      ]
+    },
+    {
+      id:'a18', m:18, title:'1 岁半体检 + 三针疫苗',
+      todo:[
+        '18 月龄儿保体检，含血红蛋白 / 贫血筛查',
+        '百白破疫苗第 4 剂',
+        '麻腮风疫苗第 2 剂',
+        '甲肝减毒活疫苗（这三针常在这一次一起安排，具体听社区医院）',
+        '已经长牙了，可以做第一次涂氟'
+      ],
+      watch:[
+        '词汇量 10-20 个，会说单字和叠词',
+        '能指认 3-5 个身体部位（眼睛、鼻子、脚）',
+        '能跑几步、扶栏杆一步一台阶上楼梯',
+        '叫名字会回头，会模仿大人做家务的动作'
+      ],
+      care:[
+        '整颗坚果、果冻、汤圆、整颗葡萄一律不给（葡萄要切四瓣）',
+        '桌角、茶几边贴防撞条',
+        '推车、餐椅必须系安全带，一秒都不能省'
+      ]
+    },
+    {
+      id:'a24', m:24, title:'2 岁体检 + 语言爆发期',
+      todo:[
+        '2 岁儿保体检',
+        '乙脑减毒活疫苗第 2 剂',
+        '视力筛查（部分地区 2 岁起做）',
+        '牙齿每半年涂氟一次，养成习惯'
+      ],
+      watch:[
+        '会说 2-3 个词的短句（「妈妈抱」「不要走」）',
+        '跑得稳、会踢球、会扶栏下楼梯',
+        '能叠 4-6 块积木',
+        '开始说「我的」「不要」——自我意识萌芽，不是没礼貌'
+      ],
+      care:[
+        '分离焦虑高发期：出门前提前告知，别偷偷溜走',
+        '窗户装限位器，别让家具靠窗摆放',
+        '厨房门口装安全门，锅柄一律朝内'
+      ]
+    },
+    {
+      id:'a30', m:30, title:'2 岁半：如厕训练窗口',
+      todo:[
+        '观察如厕训练信号：能说出尿意、纸尿裤能干爽 2 小时、愿意坐小马桶',
+        '2 岁半前戒掉安抚奶嘴（长期用影响牙齿和发音）',
+        '部分地区有 30 月龄儿保，按社区通知去'
+      ],
+      watch:[
+        '会说「我」，开始用代词',
+        '能双脚同时离地跳一下',
+        '能自己用勺子吃掉大半碗',
+        '听得懂两步指令（「去房间把球拿来」）'
+      ],
+      care:[
+        '如厕训练别硬来，练成了又退步很常见，退步时别批评',
+        '衣柜、书架等高柜必须固定上墙，防攀爬倾倒',
+        '这个阶段爱扔东西，别当成故意捣乱，给他能扔的替代品'
+      ]
+    },
+    {
+      id:'a36', m:36, title:'3 岁：入园体检 + 入园准备',
+      todo:[
+        '入园体检（含视力、听力筛查，部分地区要结核菌素试验）',
+        '准备预防接种证、儿童保健手册复印件',
+        '孤独症筛查：18-36 月龄是关键筛查期，社区医院常做',
+        'A+C 流脑疫苗第 1 剂'
+      ],
+      watch:[
+        '能说完整的句子（4-6 个字以上）',
+        '双脚交替上楼梯，不扶也能走稳',
+        '会自己穿脱宽松的衣裤、鞋子',
+        '能和小朋友短暂共处，知道「轮流」'
+      ],
+      care:[
+        '入园前 2 个月把作息调到园所时间，早上不硬拽',
+        '送下就走，别在门口反复回头；接的时候别迟到',
+        '刚入园频繁生病是正常的（免疫系统在建库），别慌'
+      ]
+    },
+    {
+      id:'a48', m:48, title:'4 岁体检 + 视力关键期',
+      todo:[
+        '4 岁儿保体检',
+        '脊灰疫苗第 4 剂（加强）',
+        '视力检查要看「远视储备」，不是只查看得清',
+        '身高体重看生长曲线的趋势，别盯单次数值'
+      ],
+      watch:[
+        '能数到 10，认识 4-6 种颜色',
+        '会画圆和十字，会画有手脚的小人',
+        '能单脚站 3-5 秒',
+        '能讲一件简单的事（有时间顺序）'
+      ],
+      care:[
+        '屏幕时间每天不超过 1 小时（WHO 2-5 岁建议），且要有人陪看',
+        '别急着纠正握笔姿势，先练手部力量：捏橡皮泥、撕纸、夹豆子',
+        '每天户外 2 小时，是目前最靠谱的近视预防手段'
+      ]
+    },
+    {
+      id:'a60', m:60, title:'5 岁体检 + 幼小衔接',
+      todo:[
+        '5 岁儿保体检',
+        '视力复查（近视防控关键窗口）',
+        '六龄齿萌出前后，咨询是否做窝沟封闭',
+        '幼小衔接准备：自理能力优先于识字算术'
+      ],
+      watch:[
+        '能连续拍球几下、会跳绳',
+        '能写自己名字的一部分',
+        '能听懂并执行三步指令',
+        '能等待轮流，输了不崩溃'
+      ],
+      care:[
+        '幼小衔接重点是「坐得住 20 分钟 + 自己上厕所 + 敢跟老师说需求」',
+        '别提前刷拼音算术题，抢跑的那点优势二年级就抹平了',
+        '这个年纪爱问「为什么」，认真回答比报班有用'
+      ]
+    },
+    {
+      id:'a72', m:72, title:'6 岁：小学入学',
+      todo:[
+        '小学入学报名：多数城市当年 3-5 月网上登记，盯当地教育局通知',
+        '入学体检',
+        '核对接种证：白破疫苗、A+C 流脑第 2 剂（入学要查验）',
+        '换牙期口腔检查'
+      ],
+      watch:[
+        '能独立整理书包、收拾自己的东西',
+        '能记住并复述老师交代的事',
+        '能遵守集体规则、排队等待'
+      ],
+      care:[
+        '入学前 1 个月把作息调到 21:00 前睡',
+        '上学路线提前带孩子走一遍，包括过马路的地方',
+        '教他一句能用的话：「老师，我需要帮忙」'
+      ]
+    }
+  ];
+
+  var REWARDS = [
+    { id:'rw1', name:'看一集 15 分钟动画片', cost:20 },
+    { id:'rw2', name:'挑一张新贴纸', cost:30 },
+    { id:'rw3', name:'去公园滑滑梯', cost:50 },
+    { id:'rw4', name:'一起做一次小烘焙', cost:80 }
+  ];
+
+  /* ===== 学习地图：8 大领域 × 5 阶段 = 120 条内容 =====
+     每条 = [知识点, 怎么陪/怎么判断做到了] */
+  var KB_DOMAINS = [
+    { id:'lang',  name:'语言阅读', color:'#1C87B3' },
+    { id:'math',  name:'数学逻辑', color:'#B8791A' },
+    { id:'word',  name:'识字拼音', color:'#6B4FB0' },
+    { id:'body',  name:'运动健康', color:'#2E8C58' },
+    { id:'self',  name:'生活自理', color:'#D8452B' },
+    { id:'social',name:'社交情绪', color:'#C2185B' },
+    { id:'art',   name:'艺术创造', color:'#D9661F' },
+    { id:'sci',   name:'科学探索', color:'#0E8C8C' }
+  ];
+
+  var KB_ITEM = {
+    s1: {
+      lang:[
+        ['听懂 20 个常用词','说「拿鞋」「给妈妈」，不用手指也能照做'],
+        ['说出 10-20 个单字','「杯」「抱」「不要」都算，别急着纠正发音'],
+        ['每天共读 10 分钟','布书、洞洞书，让他自己翻、自己撕也不拦']
+      ],
+      math:[
+        ['一个碗一把勺','摆餐具时让他一人一份，先懂「一一对应」'],
+        ['分得清大和小','拿大球小球，让他递「大的那个」'],
+        ['认 2-3 种颜色','一次只教一个颜色，把红色的积木全找出来']
+      ],
+      word:[
+        ['认出自己的名字卡','墙上贴名字卡，出门前指一下「这是你的」'],
+        ['认 3-5 个生活标识','厕所、电梯、出口，路过就指给他看'],
+        ['知道书要一页页翻','不教认字，只让他知道「这个东西有用」']
+      ],
+      body:[
+        ['独立走稳、蹲下捡东西','地上撒几个小物件让他蹲着捡，练平衡'],
+        ['扶栏杆上楼梯','一步一台阶，扶着走，别抱着上楼'],
+        ['会扔球、拍手、挥手','扔球进筐、再见挥手，都是大运动']
+      ],
+      self:[
+        ['自己拿勺吃几口','弄得到处都是也让他来，别抢勺子'],
+        ['配合穿衣伸手抬脚','穿袖子时说「手伸出来」，让他配合'],
+        ['会用吸管杯喝水','换成敞口杯练，洒了擦掉就行']
+      ],
+      social:[
+        ['看懂高兴和生气','做夸张表情，让他指「妈妈开心还是生气」'],
+        ['会说「不要」「我的」','这是自我意识萌芽，不是没礼貌'],
+        ['玩躲猫猫、来回传球','一来一回的互动，是社交的第一课']
+      ],
+      art:[
+        ['乱涂乱画','粗蜡笔 + 大纸，画到纸外面也别管'],
+        ['跟着音乐晃身体','放儿歌抱着摇，拍手打拍子'],
+        ['捏橡皮泥','捏、压、戳就行，不要求做出形状']
+      ],
+      sci:[
+        ['玩水玩沙','倒进去倒出来，就是在学「多少」和「守恒」'],
+        ['找藏起来的东西','毛巾盖住玩具让他找，懂「看不见但还在」'],
+        ['按按钮看结果','开关、机关书，建立「我做了→发生了」']
+      ]
+    },
+    s2: {
+      lang:[
+        ['说 2-3 个词的短句','「妈妈抱宝宝」，把单词连起来就是进步'],
+        ['听懂两步指令','「先把书拿来，再放桌上」，能做到就很好'],
+        ['共读 15 分钟并指图','读到哪指到哪，问他「这是什么」']
+      ],
+      math:[
+        ['数数 1-10','数楼梯、数手指，背顺口溜也算数'],
+        ['认识圆形和方形','在家里找「圆的东西」，比看卡片有用'],
+        ['按颜色或大小分类','积木按颜色分堆，一次只按一个标准']
+      ],
+      word:[
+        ['认 10-20 个字','门、手、口、大、小，生活里碰到才认'],
+        ['知道字从左往右读','读的时候手指着字走，不要求他认'],
+        ['会「假装读书」','他拿书瞎念，说明他知道书是干嘛的']
+      ],
+      body:[
+        ['跑得稳、会双脚跳','原地跳、跳下矮台阶，落地不摔就行'],
+        ['踢球、扔球过头','球类游戏每天 10 分钟，比报班管用'],
+        ['扶栏杆交替下楼梯','下楼比上楼难，慢慢来']
+      ],
+      self:[
+        ['自己用勺吃完一顿','洒一半也算自己吃，别抢勺子'],
+        ['如厕会表达「要尿」','说出口就夸，尿裤子别批评'],
+        ['会脱鞋脱袜','回家让他自己脱，脱反了再教']
+      ],
+      social:[
+        ['会说「我生气了」','教他把情绪说出来，而不是只哭'],
+        ['能和小朋友待在一起','各玩各的也算社交，不用逼着分享'],
+        ['会说「请」「谢谢」','提醒着说，别当众纠正']
+      ],
+      art:[
+        ['画封闭的圆','他会说这是「太阳」「妈妈」，就对了'],
+        ['整首唱 3-5 首儿歌','一起唱，忘了词就乱编'],
+        ['撕纸、粘贴','撕纸是精细动作，别怕浪费']
+      ],
+      sci:[
+        ['说出 5 种动物和叫声','猫狗鸡鸭羊，配上叫声记得最牢'],
+        ['知道冷热、干湿','洗澡水温、湿毛巾，用身体感受'],
+        ['反复倒水、装进去倒出来','给他两个杯子来回倒，别怕洒']
+      ]
+    },
+    s3: {
+      lang:[
+        ['用完整句子讲今天的事','「今天在公园看到大狗」，别打断他'],
+        ['听懂三步指令','「拿书、放桌上、关灯」，三步都记住'],
+        ['会问「为什么」','认真回一句就行，不用讲原理']
+      ],
+      math:[
+        ['手口一致点数 1-5','点一个数一个，最后说「一共 3 个」'],
+        ['认识三角形、长方形','用积木、饼干、窗户找形状'],
+        ['比较长短、高矮、粗细','比筷子、比个子、比树干']
+      ],
+      word:[
+        ['认 30-50 个高频字','超市招牌、路牌、包装袋，看到就念'],
+        ['认识自己的姓','「你姓王，王王的王」'],
+        ['玩字卡配对','找一样的字、字配图，当游戏不当课']
+      ],
+      body:[
+        ['单脚站 3-5 秒','穿袜子时单脚站着穿，顺手就练了'],
+        ['骑平衡车或滑板车','比三轮车更练平衡感'],
+        ['拍球 1-2 下、接住大球','球越大越好接，先接再拍']
+      ],
+      self:[
+        ['自己穿脱衣鞋','分辨左右可以从「鞋扣朝外」开始'],
+        ['自己洗手搓 20 秒','唱两遍生日歌正好 20 秒'],
+        ['玩完收玩具归位','每个箱子贴标签，收拾像配对游戏']
+      ],
+      social:[
+        ['会轮流、会等待','玩桌游最能练，掷骰子要等别人'],
+        ['能说出难过、害怕','「你是不是有点怕」，帮他把词补上'],
+        ['偶尔愿意分享','不强迫，分享了就具体夸「你给他玩，他好开心」']
+      ],
+      art:[
+        ['画有头有身体的人','火柴人也算，说明他开始「表征」了'],
+        ['跟着节奏敲打','锅碗瓢盆就是乐器，敲准拍子'],
+        ['搭有名字的作品','「这是停车场」，比搭得高更重要']
+      ],
+      sci:[
+        ['能等一个简单解释','「因为水开了会冒气」，一句话就够'],
+        ['认识晴雨、白天黑夜','每天出门说一句今天什么天气'],
+        ['种一颗豆子看发芽','放窗台每天浇一点水，让他自己看']
+      ]
+    },
+    s4: {
+      lang:[
+        ['复述一个故事','有开头、有经过、有结尾就算过'],
+        ['说清一件事的因果','「因为下雨了，所以不能去公园」'],
+        ['共读 25 分钟长篇','开始读有情节的绘本和简单科普']
+      ],
+      math:[
+        ['点数 1-20','数到几就是几个，别跳过手指阶段'],
+        ['10 以内实物加减','5 个苹果拿走 2 个，还剩几个？'],
+        ['找规律','红蓝红蓝，下一个什么颜色']
+      ],
+      word:[
+        ['认 100-200 字','能读「我爱你」「大灰狼」这种短句'],
+        ['认识多数声母韵母','唱拼音歌、玩拼音卡，先熟悉声音'],
+        ['会写自己名字','不要求笔顺完美，能认出来就行']
+      ],
+      body:[
+        ['连续跳绳 3-5 下','先练「甩-跳」节拍，别急着连跳'],
+        ['单脚跳、走直线','地上贴一条胶带当独木桥'],
+        ['用剪刀剪直线','儿童安全剪刀，从剪纸条开始']
+      ],
+      self:[
+        ['自己刷牙（家长补刷）','让他先刷，你再补一遍后牙'],
+        ['整理书包或玩具箱','固定位置 + 每天一次，形成肌肉记忆'],
+        ['擦桌子、摆碗筷','给真实任务，比玩具厨房有用']
+      ],
+      social:[
+        ['能协商「我玩完给你」','冲突时别急着当裁判，先让他们自己说'],
+        ['输了不崩溃','输了说「再来一次」，多玩有输赢的游戏'],
+        ['有固定的好朋友','约一次一对一玩，比一大群更练社交']
+      ],
+      art:[
+        ['画有细节的画','人有手指、房子有窗户，就是进步'],
+        ['会剪贴、对角折纸','折纸最练空间感，从对角折开始'],
+        ['玩角色扮演','当医生、当妈妈，一玩半小时']
+      ],
+      sci:[
+        ['知道四季和穿衣','「冬天要穿羽绒服」，把天气和身体连起来'],
+        ['会做简单观察记录','把发芽的豆子画下来，比拍照更入脑'],
+        ['知道沉和浮、会溶化','洗澡时给一盆水，放石头、木头、盐']
+      ]
+    },
+    s5: {
+      lang:[
+        ['独立朗读注音读物','每天 10 分钟出声读，读错别打断'],
+        ['讲故事有条理','会用「先、然后、最后」串起来'],
+        ['每天自主阅读 20 分钟','他自己翻书的时间，比共读更珍贵']
+      ],
+      math:[
+        ['10 以内口算加减','从实物过渡到心里算，一天 5 道就够'],
+        ['20 以内数数倒数','从 20 倒数到 1，玩「发射倒计时」'],
+        ['认识整点、星期、昨天今天明天','挂个钟和日历，每天问一句今天几号']
+      ],
+      word:[
+        ['拼音拼读两拼音节','b-a→ba，声母韵母碰一碰'],
+        ['认 300-500 字','能读简单注音绘本，不求快'],
+        ['掌握基本笔顺规则','先横后竖、先撇后捺，写慢不写多']
+      ],
+      body:[
+        ['连续跳绳 10 下以上','跳绳是小学体育达标项，提前练不亏'],
+        ['拍球 20 下、会抛接','双手交替拍球，练协调'],
+        ['握笔姿势正确','三指握笔，能画在格子里不越界']
+      ],
+      self:[
+        ['独立完成如厕全套','包括擦屁股，上学前必须会'],
+        ['自己整理书包备明天','睡前自己装，忘带一次就记住了'],
+        ['会系鞋带或扣扣子','系鞋带可以晚点，扣扣子现在就能练']
+      ],
+      social:[
+        ['能自己解决小冲突','求助前先让他试一次「你跟他怎么说」'],
+        ['懂排队、举手、轮流','在家玩「上课」游戏，把规则演出来'],
+        ['会向老师表达需求','「老师我想上厕所」，比认字更重要']
+      ],
+      art:[
+        ['画主题画并讲出故事','画完问他「这里在发生什么」'],
+        ['会做贺卡送人','剪贴 + 写名字，送出去有成就感'],
+        ['完成 30 分钟的作品','拼图、乐高、手工，练的是坐得住']
+      ],
+      sci:[
+        ['做「猜-试-看结果」小实验','「你觉得会沉还是浮？」先猜再做'],
+        ['认识生命周期','蝌蚪变青蛙、种子长成大树'],
+        ['知道保护牙齿和眼睛','刷牙、少看屏幕、看书距离一尺']
+      ]
+    }
+  };
+
+  /* ===== 工具 ===== */
+  function pad2(n){ return n < 10 ? '0' + n : '' + n; }
+  function dateStr(d){ return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+  function todayKey(){ return dateStr(new Date()); }
+  function parseDate(s){
+    var p = String(s).split('-');
+    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+  }
+  function addDays(s, n){
+    var d = parseDate(s);
+    d.setDate(d.getDate() + n);
+    return dateStr(d);
+  }
+  function md(s){ var p = String(s).split('-'); return p[1] + '/' + p[2]; }
+  function esc(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function uid(){ return 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+  var lastSpeak = 0;
+  function speak(text){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      var now = Date.now();
+      if(now - lastSpeak < 280) return;
+      lastSpeak = now;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'zh-CN';
+      u.rate = 0.82;
+      u.pitch = 1.15;
+      window.speechSynthesis.speak(u);
+    }catch(e){ /* 不支持就安静跳过 */ }
+  }
+
+  var toastTimer = null;
+  function toast(msg){
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    if(toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 1900);
+  }
+
+  /* ===== 数据层 ===== */
+  function blankState(){
+    return {
+      version: 2, name: '小宝贝', birthday: '2025-07-28',
+      isSample: false, daily: {}, tasks: [],
+      habits: {}, learnedCards: {}, know: {}, redeemed: [], growth: [], milestones: [],
+      ageDone: {},
+      backupHintDismissed: false, lastStageKey: ''
+    };
+  }
+
+  function seedSample(){
+    var t = todayKey();
+    var s = blankState();
+    s.name = '小石头';
+    s.birthday = '2025-07-28';
+    s.isSample = true;
+    s.daily = {};
+    s.daily[addDays(t, -1)] = { s1a:1, s1b:1 };
+    s.daily[t] = { s1b:1 };
+    s.tasks = [
+      { id: uid(), title:'预约 18 个月儿保体检', due: addDays(t, -1), done:false, doneDate:'' },
+      { id: uid(), title:'买一本新的洞洞书', due: t, done:false, doneDate:'' }
+    ];
+    s.habits = {};
+    s.habits[addDays(t, -1)] = { h1_out:1, h1_read:1, h1_brush:1 };
+    s.habits[addDays(t, -2)] = { h1_read:1, h1_eat:1, h1_brush:1 };
+    s.habits[addDays(t, -3)] = { h1_out:1, h1_read:1 };
+    s.learnedCards = { apple:1, cat:1 };
+    s.growth = [
+      { date: addDays(t, -60), h: 78.5, w: 10.2 },
+      { date: addDays(t, -20), h: 81.0, w: 10.9 }
+    ];
+    s.milestones = [
+      { date: addDays(t, -15), text:'会自己走五六步了' },
+      { date: addDays(t, -5), text:'会指着杯子说「杯」' }
+    ];
+    return s;
+  }
+
+  function normalize(raw){
+    var s = blankState();
+    if(!raw || typeof raw !== 'object') return s;
+    if(typeof raw.name === 'string' && raw.name.trim()) s.name = raw.name.trim().slice(0, 12);
+    /* 老版本示例名自动迁移 */
+    if(s.name === '小葡萄') s.name = '小石头';
+    if(typeof raw.birthday === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(raw.birthday)) s.birthday = raw.birthday;
+    s.isSample = !!raw.isSample;
+    if(raw.daily && typeof raw.daily === 'object') s.daily = raw.daily;
+    if(Array.isArray(raw.tasks)) s.tasks = raw.tasks.filter(function(x){ return x && typeof x.title === 'string'; });
+    if(raw.habits && typeof raw.habits === 'object'){
+      var out = {};
+      Object.keys(raw.habits).forEach(function(d){
+        var day = raw.habits[d] || {}, nd = {};
+        Object.keys(day).forEach(function(k){
+          if(!day[k]) return;
+          nd[HABIT_MIGRATE[k] || k] = 1;
+        });
+        if(Object.keys(nd).length) out[d] = nd;
+      });
+      s.habits = out;
+    }
+    if(raw.learnedCards && typeof raw.learnedCards === 'object') s.learnedCards = raw.learnedCards;
+    if(raw.know && typeof raw.know === 'object') s.know = raw.know;
+    if(Array.isArray(raw.redeemed)) s.redeemed = raw.redeemed;
+    if(Array.isArray(raw.growth)) s.growth = raw.growth.filter(function(g){ return g && g.date && Number(g.h) > 0; });
+    if(Array.isArray(raw.milestones)) s.milestones = raw.milestones.filter(function(m){ return m && m.text; });
+    if(raw.ageDone && typeof raw.ageDone === 'object') s.ageDone = raw.ageDone;
+    s.backupHintDismissed = !!raw.backupHintDismissed;
+    if(typeof raw.lastStageKey === 'string') s.lastStageKey = raw.lastStageKey;
+    return s;
+  }
+
+  function loadState(){
+    try{
+      var txt = localStorage.getItem(STORE_KEY) || localStorage.getItem('wb_toddler_v1');
+      if(!txt) return seedSample();
+      return normalize(JSON.parse(txt));
+    }catch(e){
+      return seedSample();
+    }
+  }
+
+  var state = loadState();
+
+  function saveState(){
+    try{
+      localStorage.setItem(STORE_KEY, JSON.stringify(state));
+      return true;
+    }catch(e){
+      toast('保存失败，存储空间可能满了');
+      return false;
+    }
+  }
+
+  /* ===== 月龄 / 阶段 ===== */
+  function monthAge(){
+    var b = parseDate(state.birthday);
+    var now = new Date();
+    var m = (now.getFullYear() - b.getFullYear()) * 12 + (now.getMonth() - b.getMonth());
+    if(now.getDate() < b.getDate()) m -= 1;
+    return Math.max(0, m);
+  }
+  function ageText(){
+    var m = monthAge();
+    var y = Math.floor(m / 12), r = m % 12;
+    if(y <= 0) return m + ' 个月';
+    return y + ' 岁' + (r ? ' ' + r + ' 个月' : '');
+  }
+  function currentStage(){
+    var m = monthAge();
+    for(var i = 0; i < STAGES.length; i++){
+      if(m >= STAGES[i].minM && m < STAGES[i].maxM) return STAGES[i];
+    }
+    return m < STAGES[0].minM ? STAGES[0] : STAGES[STAGES.length - 1];
+  }
+  function stageMonthsLeft(){
+    var st = currentStage();
+    return Math.max(0, st.maxM - monthAge());
+  }
+
+  /* ===== 成长节点计算（只读） ===== */
+  function addMonthsDate(dateStr, n){
+    var b = parseDate(dateStr);
+    var first = new Date(b.getFullYear(), b.getMonth() + n, 1);
+    var lastDay = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+    first.setDate(Math.min(b.getDate(), lastDay));
+    return first;
+  }
+  function dayDiff(fromD, toD){
+    var a = new Date(fromD.getFullYear(), fromD.getMonth(), fromD.getDate());
+    var b = new Date(toD.getFullYear(), toD.getMonth(), toD.getDate());
+    return Math.round((b - a) / 86400000);
+  }
+  function ageEventDate(ev){ return addMonthsDate(state.birthday, ev.m); }
+  /* 正数 = 还有几天到；负数 = 已经过去几天 */
+  function ageEventDays(ev){ return dayDiff(new Date(), ageEventDate(ev)); }
+  function ageEventDone(ev){ return !!state.ageDone[ev.id]; }
+  /* 置顶提醒：先看到点没做的（60 天内），否则看最近的未来节点（200 天内） */
+  function ageEventFocus(){
+    var i, ev, d, overdue = null, upcoming = null, best = 1e9;
+    for(i = 0; i < AGE_EVENTS.length; i++){
+      ev = AGE_EVENTS[i];
+      if(ageEventDone(ev)) continue;
+      d = ageEventDays(ev);
+      if(d <= 0 && d >= -60 && !overdue) overdue = { ev: ev, days: d };
+      if(d > 0 && d < best){ best = d; upcoming = { ev: ev, days: d }; }
+    }
+    return overdue || upcoming;
+  }
+
+  /* ===== 计算层（只读） ===== */
+  function stageDoneOn(dateKey){
+    var st = currentStage(), rec = state.daily[dateKey] || {};
+    return st.tasks.filter(function(t){ return rec[t.id]; }).length;
+  }
+  function stageCarryIds(){
+    var st = currentStage(), y = state.daily[addDays(todayKey(), -1)] || {}, out = [];
+    var doneN = st.tasks.filter(function(t){ return y[t.id]; }).length;
+    if(!doneN) return out; /* 昨天完全没记录：可能没打开，不算"漏"，不催 */
+    st.tasks.forEach(function(t){ if(!y[t.id]) out.push(t.id); });
+    return out;
+  }
+  function habitCountOn(d){
+    var day = state.habits[d];
+    if(!day) return 0;
+    return Object.keys(day).filter(function(k){ return day[k]; }).length;
+  }
+  function getStreak(){
+    var cur = todayKey();
+    if(habitCountOn(cur) === 0) cur = addDays(cur, -1);
+    var streak = 0, guard = 0;
+    while(guard < 400){
+      if(habitCountOn(cur) > 0){ streak++; cur = addDays(cur, -1); guard++; }
+      else break;
+    }
+    return streak;
+  }
+  function getOverdue(){
+    var t = todayKey();
+    return state.tasks.filter(function(x){ return !x.done && x.due < t; })
+      .sort(function(a, b){ return a.due < b.due ? -1 : 1; });
+  }
+  function getTodayPending(){
+    var t = todayKey();
+    return state.tasks.filter(function(x){ return !x.done && x.due === t; });
+  }
+  function getDoneToday(){
+    var t = todayKey();
+    return state.tasks.filter(function(x){ return x.done && x.doneDate === t; });
+  }
+  function totalDailyChecks(){
+    var n = 0;
+    Object.keys(state.daily).forEach(function(d){
+      var rec = state.daily[d];
+      n += Object.keys(rec).filter(function(k){ return rec[k]; }).length;
+    });
+    return n;
+  }
+  function computeEarned(){
+    var e = 0;
+    e += totalDailyChecks() * 2;
+    e += state.tasks.filter(function(x){ return x.done; }).length * 3;
+    Object.keys(state.habits).forEach(function(d){ e += habitCountOn(d) * 2; });
+    e += Object.keys(state.learnedCards).length * 5;
+    e += Object.keys(state.know).length * 1;
+    return e;
+  }
+  function computeSpent(){
+    return state.redeemed.reduce(function(a, r){ return a + (Number(r.cost) || 0); }, 0);
+  }
+  function computeBalance(){
+    return Math.max(0, computeEarned() - computeSpent());
+  }
+  function totalRecords(){
+    var n = state.tasks.length + Object.keys(state.learnedCards).length + totalDailyChecks();
+    Object.keys(state.habits).forEach(function(d){ n += habitCountOn(d); });
+    n += state.redeemed.length + state.growth.length + state.milestones.length;
+    n += Object.keys(state.know).length;
+    return n;
+  }
+  function growthSorted(){
+    return state.growth.slice().sort(function(a, b){ return a.date < b.date ? -1 : 1; });
+  }
+  function stageCardList(){
+    var st = currentStage(), ids = st.cards;
+    return CARD_LIST.filter(function(c){ return ids.indexOf(c.id) >= 0; });
+  }
+  /* 宝宝模式用：所有已解锁阶段的卡（含以前学过的，方便回头复习） */
+  function unlockedCardList(){
+    var m = monthAge(), ids = [];
+    STAGES.forEach(function(s){
+      if(m >= s.minM){
+        s.cards.forEach(function(id){ if(ids.indexOf(id) < 0) ids.push(id); });
+      }
+    });
+    if(!ids.length) ids = currentStage().cards.slice();
+    return CARD_LIST.filter(function(c){ return ids.indexOf(c.id) >= 0; });
+  }
+
+  /* ===== 复习机制 ===== */
+  var REVIEW_DAYS = 7;
+  /* learnedCards 值兼容两种格式：老数据 1（无时间），新数据 Date.now() 毫秒 */
+  function learnTs(id){
+    var v = state.learnedCards[id];
+    return (typeof v === 'number' && v > 1000000000000) ? v : 0;
+  }
+  function reviewCardList(){
+    var now = Date.now(), out = [];
+    unlockedCardList().forEach(function(c){
+      var t = learnTs(c.id);
+      if(t && now - t > REVIEW_DAYS * 86400000) out.push(c);
+    });
+    return out;
+  }
+
+  /* ===== WHO 男童生长标准（2006）锚点表 [月龄, P3, P50, P97]，中间月龄线性插值 ===== */
+  var WHO_H = [
+    [0,46.3,49.9,53.4],[1,51.1,54.7,58.4],[2,54.7,58.4,62.2],[3,57.6,61.4,65.3],
+    [4,60.0,63.9,67.8],[5,61.9,65.9,69.9],[6,63.6,67.6,71.6],[9,67.7,72.0,76.2],
+    [12,71.3,75.7,80.2],[15,74.4,79.1,83.9],[18,77.2,82.3,87.3],[21,79.7,85.1,90.5],
+    [24,82.1,87.8,93.6],[36,89.1,96.1,103.1],[48,95.4,103.3,111.2],[60,101.2,110.0,118.7]
+  ];
+  var WHO_W = [
+    [0,2.5,3.3,4.3],[1,3.4,4.5,5.7],[2,4.4,5.6,7.0],[3,5.1,6.4,7.9],
+    [4,5.6,7.0,8.6],[5,6.1,7.5,9.2],[6,6.4,7.9,9.7],[9,7.2,8.9,10.9],
+    [12,7.8,9.6,11.8],[15,8.4,10.3,12.6],[18,8.9,10.9,13.5],[21,9.3,11.5,14.2],
+    [24,9.8,12.2,15.1],[36,11.4,14.3,18.0],[48,12.9,16.3,20.9],[60,14.3,18.3,23.8]
+  ];
+  function whoAt(tb, m){
+    if(m <= tb[0][0]) return tb[0].slice(1);
+    for(var i = 1; i < tb.length; i++){
+      if(m <= tb[i][0]){
+        var a = tb[i-1], b = tb[i], t = (m - a[0]) / (b[0] - a[0]);
+        return [a[1] + (b[1]-a[1])*t, a[2] + (b[2]-a[2])*t, a[3] + (b[3]-a[3])*t];
+      }
+    }
+    return tb[tb.length-1].slice(1);
+  }
+
+  /* ===== 学习地图计算（只读） ===== */
+  function kbItemsOf(sk, d){ return (KB_ITEM[sk] || {})[d] || []; }
+  function kbKeyOf(sk, d, i){ return sk + ':' + d + ':' + i; }
+  function kbDomainStats(d){
+    var total = 0, got = 0;
+    STAGES.forEach(function(st){
+      var arr = kbItemsOf(st.key, d);
+      total += arr.length;
+      arr.forEach(function(it, i){ if(state.know[kbKeyOf(st.key, d, i)]) got++; });
+    });
+    return { total: total, got: got };
+  }
+  function kbStageStats(sk, d){
+    var arr = kbItemsOf(sk, d), got = 0;
+    arr.forEach(function(it, i){ if(state.know[kbKeyOf(sk, d, i)]) got++; });
+    return { total: arr.length, got: got };
+  }
+  function kbAllStats(){
+    var total = 0, got = 0;
+    KB_DOMAINS.forEach(function(d){
+      var s = kbDomainStats(d.id);
+      total += s.total; got += s.got;
+    });
+    return { total: total, got: got };
+  }
+  function kbFind(key){
+    var p = String(key).split(':');
+    var arr = kbItemsOf(p[0], p[1]);
+    var it = arr[Number(p[2])];
+    return it ? { stage:p[0], domain:p[1], name:it[0], how:it[1] } : null;
+  }
+
+  /* ===== 渲染层（彼此不互相调用，只读 state） ===== */
+  function svgRing(pct){
+    var r = 18, c = 2 * Math.PI * r;
+    var off = c * (1 - Math.max(0, Math.min(1, pct)));
+    return '<svg viewBox="0 0 46 46" class="ring">' +
+      '<circle cx="23" cy="23" r="' + r + '" fill="none" stroke="#F1E6DB" stroke-width="6"/>' +
+      '<circle cx="23" cy="23" r="' + r + '" fill="none" stroke="#62C98C" stroke-width="6" stroke-linecap="round" ' +
+      'stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + off.toFixed(1) + '" transform="rotate(-90 23 23)"/>' +
+      '</svg>';
+  }
+
+  function renderHeader(){
+    document.getElementById('brandTitle').textContent = state.name + ' 的成长台';
+    document.title = state.name + ' 的成长台';
+    document.getElementById('brandSub').textContent = ageText() + ' · ' + currentStage().name;
+    var d = new Date();
+    document.getElementById('todayDateSub').textContent =
+      (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日 · 星期' + WEEK[d.getDay()];
+  }
+
+  function stageRow(t, done, isCarry){
+    var cls = 'stask' + (isCarry ? ' catchup' : '') + (done ? ' done' : '');
+    var meta = done ? '今天已完成' : (isCarry ? '昨天漏了，今天补上' : '每天固定流程');
+    return '<div class="' + cls + '">' +
+      '<button class="chk' + (done ? ' on' : '') + '" type="button" data-stask="' + t.id + '" aria-label="切换完成">' +
+        (done ? IC.check : '') + '</button>' +
+      '<div class="stask-main">' +
+        '<span class="stask-title">' + esc(t.title) + '</span>' +
+        '<span class="stask-meta">' + meta + '</span>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function customRow(t, isLate){
+    var cls = 'task' + (isLate ? ' late' : '') + (t.done ? ' done' : '');
+    var meta;
+    if(t.done){ meta = '已完成'; }
+    else if(t.due < todayKey()){ meta = '原定 ' + md(t.due) + ' · 已逾期'; }
+    else { meta = '今天'; }
+    var postpone = isLate ? '<button class="mini-btn" type="button" data-postpone="' + t.id + '">顺延到今天</button>' : '';
+    return '<div class="' + cls + '">' +
+      '<button class="chk' + (t.done ? ' on' : '') + '" type="button" data-toggle="' + t.id + '" aria-label="切换完成状态">' +
+        (t.done ? IC.check : '') + '</button>' +
+      '<div class="task-main">' +
+        '<span class="task-title">' + esc(t.title) + '</span>' +
+        '<span class="task-meta">' + meta + '</span>' +
+      '</div>' + postpone +
+      '<button class="del" type="button" data-del="' + t.id + '" aria-label="删除">' + IC.x + '</button>' +
+    '</div>';
+  }
+
+  function renderToday(){
+    var st = currentStage(), tk = todayKey();
+    var rec = state.daily[tk] || {};
+    var carry = stageCarryIds();
+
+    var nextTxt;
+    if(monthAge() < 12) nextTxt = '还没满 1 岁，先按最简版来';
+    else if(monthAge() >= 72) nextTxt = '已过 6 岁，按幼小衔接保留';
+    else nextTxt = '距下一台阶 ' + stageMonthsLeft() + ' 个月';
+
+    document.getElementById('stageBar').innerHTML =
+      '<span class="dot"></span><b>' + st.ageLabel + ' · ' + st.name + '</b>' +
+      '<span>现在 ' + ageText() + '</span>' +
+      '<span class="next">' + nextTxt + '</span>';
+
+    document.getElementById('stageTaskList').innerHTML = st.tasks.map(function(t){
+      var done = !!rec[t.id];
+      return stageRow(t, done, !done && carry.indexOf(t.id) >= 0);
+    }).join('');
+
+    var overdue = getOverdue();
+    var pending = getTodayPending();
+    var doneT = getDoneToday();
+    var html = '';
+    if(overdue.length){
+      html += '<div class="sec-label late">' + IC.alert + ' 逾期 ' + overdue.length + ' 项</div>';
+      html += overdue.map(function(t){ return customRow(t, true); }).join('');
+    }
+    html += pending.map(function(t){ return customRow(t, false); }).join('');
+    if(doneT.length){
+      if(pending.length || overdue.length) html += '<div class="sec-label">今天已完成 ' + doneT.length + ' 项</div>';
+      html += doneT.map(function(t){ return customRow(t, false); }).join('');
+    }
+    document.getElementById('todayList').innerHTML = html;
+    document.getElementById('customLabel').style.display = (overdue.length + pending.length + doneT.length) ? 'flex' : 'none';
+
+    var stDone = st.tasks.filter(function(t){ return rec[t.id]; }).length;
+    var chips = [];
+    chips.push('<span class="chip ok">今日流程 ' + stDone + '/' + st.tasks.length + '</span>');
+    if(overdue.length) chips.push('<span class="chip late">' + IC.alert + ' 逾期 ' + overdue.length + '</span>');
+    chips.push('<span class="chip blue">打卡 ' + habitCountOn(tk) + '/' + st.habits.length + '</span>');
+    chips.push('<span class="chip">连续 ' + getStreak() + ' 天</span>');
+    document.getElementById('todayChips').innerHTML = chips.join('');
+
+    document.getElementById('sampleStrip').style.display = state.isSample ? 'flex' : 'none';
+  }
+
+  function renderCards(){
+    var list = stageCardList();
+    var learned = state.learnedCards || {};
+    var got = list.filter(function(c){ return learned[c.id]; }).length;
+
+    document.getElementById('cardGrid').innerHTML = list.map(function(c){
+      var on = !!learned[c.id];
+      return '<button class="kcard' + (on ? ' is-learned' : '') + '" type="button" data-card="' + c.id + '">' +
+        (on ? '<span class="kcard-badge">' + IC.check + '</span>' : '') +
+        '<span class="kcard-art">' + c.svg + '</span>' +
+        '<span class="kcard-name">' + c.name + '</span>' +
+        '<span class="kcard-py">' + c.py + '</span>' +
+      '</button>';
+    }).join('');
+
+    document.getElementById('cardProgressTxt').textContent = got + ' / ' + list.length;
+    document.getElementById('cardProgress').innerHTML = svgRing(list.length ? got / list.length : 0);
+    var rv = reviewCardList();
+    document.getElementById('cardHint').textContent = currentStage().cardHint +
+      (rv.length ? ' · 有 ' + rv.length + ' 张卡 ' + REVIEW_DAYS + ' 天没看了，宝宝模式里会优先出现' : '');
+  }
+
+  function renderHabits(){
+    var st = currentStage();
+    var days = [], i;
+    for(i = 6; i >= 0; i--) days.push(addDays(todayKey(), -i));
+    var tk = todayKey();
+
+    var head = '<div class="m-row"><div></div>' + days.map(function(d){
+      return '<div class="m-head' + (d === tk ? ' today' : '') + '">' +
+        '<b>' + md(d).split('/')[1] + '</b>' + WEEK[parseDate(d).getDay()] + '</div>';
+    }).join('') + '</div>';
+
+    var rows = st.habits.map(function(h){
+      var cells = days.map(function(d){
+        var on = state.habits[d] && state.habits[d][h.id];
+        return '<button class="cell' + (on ? ' on' : '') + (d === tk ? ' today-col' : '') + '" ' +
+          'type="button" data-habit="' + h.id + '" data-date="' + d + '">' + (on ? IC.check : '') + '</button>';
+      }).join('');
+      return '<div class="m-row"><div class="m-name">' + h.name + '</div>' + cells + '</div>';
+    }).join('');
+
+    document.getElementById('habitMatrix').innerHTML = head + rows;
+
+    var weekN = days.reduce(function(a, d){ return a + (habitCountOn(d) > 0 ? 1 : 0); }, 0);
+    document.getElementById('habitChips').innerHTML =
+      '<span class="chip ok">今天 ' + habitCountOn(tk) + '/' + st.habits.length + '</span>' +
+      '<span class="chip">本周 ' + weekN + '/7 天</span>' +
+      '<span class="chip blue">连续 ' + getStreak() + ' 天</span>';
+  }
+
+  function renderRewards(){
+    var bal = computeBalance();
+    document.getElementById('pointsNum').textContent = bal;
+    document.getElementById('pointsSide').innerHTML =
+      '累计获得 ' + computeEarned() + ' 分<br>已兑换 ' + computeSpent() + ' 分';
+
+    document.getElementById('rewardList').innerHTML = REWARDS.map(function(r){
+      var can = bal >= r.cost;
+      return '<div class="reward">' +
+        '<span class="reward-name">' + esc(r.name) + '</span>' +
+        '<span class="reward-cost">' + r.cost + ' 分</span>' +
+        '<button type="button" class="' + (can ? 'ok' : 'no') + '" data-redeem="' + r.id + '">' + (can ? '兑换' : '还差') + '</button>' +
+      '</div>';
+    }).join('');
+
+    var logs = state.redeemed.slice(-3).reverse();
+    document.getElementById('pointsLog').innerHTML = logs.length
+      ? '<div class="sec-label">最近兑换</div>' + logs.map(function(l){
+          return '<div class="log-line"><span>' + esc(l.name) + '</span><span>-' + l.cost + '</span></div>';
+        }).join('')
+      : '';
+  }
+
+  var growthMode = 'h';
+  function setGrowthMode(m){
+    growthMode = m;
+    document.getElementById('gModeH').classList.toggle('on', m === 'h');
+    document.getElementById('gModeW').classList.toggle('on', m === 'w');
+    renderGrowth();
+  }
+  function monthsAt(date){
+    var b = parseDate(state.birthday);
+    var d = parseDate(date);
+    if(!b || isNaN(b.getTime()) || !d || isNaN(d.getTime())) return 0;
+    return (d - b) / 86400000 / 30.4375;
+  }
+  function buildChart(list){
+    var isH = growthMode === 'h';
+    var unit = isH ? '身高 cm' : '体重 kg';
+    var data = list.slice(-8).filter(function(g){
+      var v = Number(isH ? g.h : g.w);
+      return !isNaN(v) && v > 0;
+    });
+    if(data.length < 2){
+      return '<p class="tip" style="margin:10px 8px;">' + (isH ? '记录' : '补上体重再') + ' 2 次以上，就能看到' + (isH ? '' : '体重') + '曲线和 WHO 参考区间。</p>';
+    }
+    var tb = isH ? WHO_H : WHO_W;
+    var W = 460, H = 190, PL = 40, PR = 40, PT = 22, PB = 30;
+    var ms = data.map(function(g){ return monthsAt(g.date); });
+    var vs = data.map(function(g){ return Number(isH ? g.h : g.w); });
+
+    /* x 轴：月龄域，至少 4 个月宽 */
+    var m0 = Math.min.apply(null, ms), m1 = Math.max.apply(null, ms);
+    if(m1 - m0 < 4){ m0 -= (4 - (m1 - m0)) / 2; m1 += (4 - (m1 - m0)) / 2; }
+    function X(m){ return PL + (m - m0) / (m1 - m0) * (W - PL - PR); }
+
+    /* y 轴：数据 + 参考线共同决定范围 */
+    var lo = Math.min.apply(null, vs), hi = Math.max.apply(null, vs);
+    [m0, (m0 + m1) / 2, m1].forEach(function(m){
+      var w = whoAt(tb, Math.max(0, Math.min(60, m)));
+      lo = Math.min(lo, w[0]); hi = Math.max(hi, w[2]);
+    });
+    var pad = (hi - lo) * 0.12 || 1;
+    lo -= pad; hi += pad;
+    function Y(v){ return PT + (hi - v) / (hi - lo) * (H - PT - PB); }
+
+    /* WHO 三条参考线 */
+    function refLine(idx, color, label){
+      var p1 = whoAt(tb, Math.max(0, Math.min(60, m0)))[idx];
+      var p2 = whoAt(tb, Math.max(0, Math.min(60, m1)))[idx];
+      return '<line x1="' + X(m0).toFixed(1) + '" y1="' + Y(p1).toFixed(1) + '" x2="' + X(m1).toFixed(1) +
+        '" y2="' + Y(p2).toFixed(1) + '" stroke="' + color + '" stroke-width="1.6" stroke-dasharray="5 4"/>' +
+        '<text x="' + (X(m1) + 4).toFixed(1) + '" y="' + (Y(p2) + 3.5).toFixed(1) + '" font-size="9.5" font-weight="700" fill="' + color + '">' + label + '</text>';
+    }
+    var refs = refLine(0, '#8FCFA0', 'P3') + refLine(1, '#B9C6D2', 'P50') + refLine(2, '#E8B48C', 'P97');
+
+    /* 数据线 */
+    var pts = data.map(function(g, i){ return X(ms[i]).toFixed(1) + ',' + Y(vs[i]).toFixed(1); }).join(' ');
+    var dots = data.map(function(g, i){
+      return '<circle cx="' + X(ms[i]).toFixed(1) + '" cy="' + Y(vs[i]).toFixed(1) + '" r="4.5" fill="#fff" stroke="#2E9FD8" stroke-width="2.6"/>';
+    }).join('');
+
+    /* x 轴刻度：整数月 */
+    var ticks = '', t0 = Math.ceil(m0), t1 = Math.floor(m1), step = Math.max(1, Math.ceil((t1 - t0) / 6));
+    for(var t = t0; t <= t1; t += step){
+      ticks += '<text x="' + X(t).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="#9AAEBE">' + t + '月</text>';
+    }
+    /* y 轴网格 */
+    var grid = '';
+    for(var k = 0; k <= 2; k++){
+      var val = hi - (hi - lo) * k / 2, y = Y(val);
+      grid += '<line x1="' + PL + '" y1="' + y.toFixed(1) + '" x2="' + (W - PR) + '" y2="' + y.toFixed(1) + '" stroke="#EFF3F6" stroke-width="1.2"/>' +
+        '<text x="' + (PL - 6) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="end" font-size="10.5" fill="#9AAEBE">' + val.toFixed(1) + '</text>';
+    }
+
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">' + grid +
+      refs +
+      '<polyline points="' + pts + '" fill="none" stroke="#2E9FD8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+      dots + ticks +
+      '<text x="' + PL + '" y="13" font-size="10.5" fill="#9AAEBE">' + unit + ' · 虚线为 WHO 男童 P3 / P50 / P97 参考线</text>' +
+    '</svg>';
+  }
+
+  function renderGrowth(){
+    var list = growthSorted();
+    document.getElementById('growthChart').innerHTML = buildChart(list);
+
+    var last3 = list.slice(-3).reverse();
+    document.getElementById('growthList').innerHTML = last3.length
+      ? last3.map(function(g){
+          return '<div class="log-line"><span>' + md(g.date) + '</span><span style="color:#8E8178;font-weight:700;">' +
+            g.h + ' cm' + (g.w ? ' · ' + g.w + ' kg' : '') + '</span></div>';
+        }).join('')
+      : '<p class="tip" style="margin:2px 0 0;">还没有记录。量一次就填一次，比记忆靠谱。</p>';
+
+    var ms = state.milestones.slice().sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 6);
+    document.getElementById('milestoneList').innerHTML = ms.length
+      ? ms.map(function(m){
+          return '<div class="ms-item"><span class="d">' + md(m.date) + '</span><span class="t">' + esc(m.text) + '</span></div>';
+        }).join('')
+      : '<p class="tip">记下「第一次自己穿鞋」这种事，三个月后你一定会忘。</p>';
+  }
+
+  /* ===== 成长节点渲染 ===== */
+  var ageOpenMap = {};
+  var AGE_IC = {
+    cal: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3M16 3v3"/><rect x="3.5" y="5.5" width="17" height="15" rx="3.5"/><path d="M3.5 10.5h17"/></svg>',
+    chk: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+    ar: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
+    todo: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#D9661F" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+    watch: '<svg viewBox="0 0 24 24" width="13" height="12" fill="none" stroke="#1C87B3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg>',
+    care: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#D8452B" stroke-width="2.4" stroke-linecap="round"><path d="M12 7.5v5M12 16v.6"/><circle cx="12" cy="12" r="9"/></svg>'
+  };
+
+  function ageLabelOf(m){
+    var y = Math.floor(m / 12), r = m % 12;
+    if(r === 6) return y + ' 岁半';
+    if(r) return y + ' 岁' + r + '月';
+    return y + ' 岁';
+  }
+  function ageIsOpen(id){
+    if(ageOpenMap[id] === undefined){
+      var f = ageEventFocus();
+      return !!(f && f.ev.id === id);
+    }
+    return !!ageOpenMap[id];
+  }
+  function ageWhenText(days, done){
+    if(done) return '已完成';
+    if(days > 90) return '约 ' + Math.round(days / 30) + ' 个月后';
+    if(days > 0) return days + ' 天后';
+    if(days === 0) return '就是这个月';
+    if(-days > 90) return Math.round(-days / 30) + ' 个月前';
+    return '已过 ' + (-days) + ' 天';
+  }
+  function ageLiHtml(arr){
+    return arr.map(function(t){ return '<div class="age-li">' + esc(t) + '</div>'; }).join('');
+  }
+
+  function renderAgeEvents(){
+    var focus = ageEventFocus();
+    var nextId = focus ? focus.ev.id : '';
+    document.getElementById('ageList').innerHTML = AGE_EVENTS.map(function(ev){
+      var done = ageEventDone(ev), days = ageEventDays(ev), open = ageIsOpen(ev.id);
+      var cls = 'age-item' + (done ? ' done' : (days <= 0 && days >= -60 ? ' due' : (ev.id === nextId ? ' next' : '')));
+      var body = open
+        ? '<div class="age-body open">' +
+            '<div class="age-sec"><div class="age-sec-h">' + AGE_IC.todo + '要办的事</div>' + ageLiHtml(ev.todo) + '</div>' +
+            '<div class="age-sec"><div class="age-sec-h">' + AGE_IC.watch + '该会什么（参考线，不是考卷）</div>' + ageLiHtml(ev.watch) + '</div>' +
+            '<div class="age-sec"><div class="age-sec-h">' + AGE_IC.care + '安全 / 照护注意</div>' + ageLiHtml(ev.care) + '</div>' +
+            '<div class="age-acts">' +
+              '<button type="button" class="' + (done ? 'on' : '') + '" data-agedone="' + ev.id + '">' + (done ? '已完成，点此撤销' : '标记已完成') + '</button>' +
+              '<button type="button" data-ageadd="' + ev.id + '">加进今天清单</button>' +
+            '</div>' +
+          '</div>'
+        : '';
+      return '<div class="' + cls + '">' +
+        '<button class="age-head' + (open ? ' open' : '') + '" type="button" data-age="' + ev.id + '">' +
+          '<span class="age-dot">' + (done ? AGE_IC.chk : AGE_IC.cal) + '</span>' +
+          '<span class="age-age">' + ageLabelOf(ev.m) + '</span>' +
+          '<span class="age-ttl">' + esc(ev.title) + '</span>' +
+          '<span class="age-when">' + ageWhenText(days, done) + '</span>' +
+          '<span class="age-ar">' + AGE_IC.ar + '</span>' +
+        '</button>' + body +
+      '</div>';
+    }).join('');
+  }
+
+  function renderAgeNotice(){
+    var bar = document.getElementById('ageNotice');
+    var f = ageEventFocus();
+    if(!f || (f.days > 200 && f.days > 0)){
+      bar.style.display = 'none';
+      document.getElementById('ageNoticeTxt').textContent = '';
+      return;
+    }
+    bar.style.display = 'flex';
+    bar.className = 'age-notice' + (f.days <= 0 ? ' due' : '');
+    document.getElementById('ageNoticeTxt').textContent = f.days <= 0
+      ? '【' + f.ev.title + '】该去做了' + (f.days === 0 ? '，就是这个月' : '，已过 ' + (-f.days) + ' 天')
+      : '【' + f.ev.title + '】还有 ' + f.days + ' 天，先看看要准备什么';
+  }
+
+  function renderBackupHint(){
+    var n = totalRecords();
+    var bar = document.getElementById('backupBar');
+    if(n >= 30 && !state.backupHintDismissed){
+      bar.style.display = 'flex';
+      document.getElementById('backupBarTxt').textContent = '数据已积累 ' + n + ' 条，建议导出备份，防止换手机或清缓存丢失。';
+    }else{
+      bar.style.display = 'none';
+    }
+  }
+
+  function renderRoadmap(){
+    var cur = currentStage().key;
+    document.getElementById('stageRoadmap').innerHTML = STAGES.map(function(s){
+      var on = s.key === cur;
+      return '<div class="road' + (on ? ' on' : '') + '">' +
+        '<span class="rn">' + s.ageLabel + '</span>' +
+        '<span>' + s.name + (on ? ' · 当前在这' : '') + '</span></div>';
+    }).join('') + '<p class="tip" style="margin:8px 2px 0;">满月龄自动切台阶，任务、打卡项、认知卡跟着换；历史记录全部保留。</p>';
+  }
+
+  /* ===== 宝宝模式（全屏图卡）：独立渲染，不参与 refreshAll ===== */
+  var babyOpen = false;
+  var babyIdx = 0;
+
+  function babyList(){
+    var all = unlockedCardList();
+    var rv = reviewCardList();
+    if(!rv.length) return all;
+    /* 该复习的排最前面，先翻到的是「快忘掉的」 */
+    return rv.concat(all.filter(function(c){ return rv.indexOf(c) < 0; }));
+  }
+
+  function renderBabyMode(){
+    var list = babyList();
+    var c = list[babyIdx];
+    if(!c) return;
+    var learned = !!state.learnedCards[c.id];
+    document.getElementById('babyProg').textContent = (babyIdx + 1) + ' / ' + list.length;
+    document.getElementById('babyCard').innerHTML =
+      '<div class="baby-art">' + c.svg + '</div>' +
+      '<div class="baby-name">' + c.name + '</div>' +
+      '<div class="baby-py">' + c.py + '</div>' +
+      '<div class="baby-gain" id="babyGain">' + (learned ? '已认识' : '新的一张') + '</div>';
+    document.getElementById('btnBabyPrev').disabled = list.length < 2;
+    document.getElementById('btnBabyNext').disabled = list.length < 2;
+  }
+
+  function babySwapAnim(){
+    var el = document.getElementById('babyCard');
+    el.classList.remove('swap');
+    void el.offsetWidth;
+    el.classList.add('swap');
+  }
+
+  function openBabyMode(startId){
+    var list = babyList();
+    if(!list.length) return;
+    babyIdx = 0;
+    if(startId){
+      for(var i = 0; i < list.length; i++){ if(list[i].id === startId){ babyIdx = i; break; } }
+    }
+    babyOpen = true;
+    document.getElementById('babyMode').classList.add('show');
+    document.getElementById('babyMode').setAttribute('aria-hidden', 'false');
+    document.body.classList.add('baby-on');
+    renderBabyMode();
+    speak(list[babyIdx].name);
+  }
+
+  function closeBabyMode(){
+    babyOpen = false;
+    document.getElementById('babyMode').classList.remove('show');
+    document.getElementById('babyMode').setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('baby-on');
+    try{ if('speechSynthesis' in window) window.speechSynthesis.cancel(); }catch(e){}
+    refreshAll();
+  }
+
+  function babyStep(delta){
+    var list = babyList();
+    if(list.length < 2) return;
+    babyIdx = (babyIdx + delta + list.length) % list.length;
+    renderBabyMode();
+    babySwapAnim();
+    speak(list[babyIdx].name);
+  }
+
+  function babyTap(){
+    var list = babyList(), c = list[babyIdx];
+    if(!c) return;
+    var gain = document.getElementById('babyGain');
+    if(!state.learnedCards[c.id]){
+      state.learnedCards[c.id] = Date.now();
+      saveState();
+      refreshAll();
+      toast('认识「' + c.name + '」啦 +5 分');
+      if(gain){ gain.textContent = '已认识'; gain.classList.add('on'); }
+    }else{
+      /* 已认过的卡再点 = 复习，刷新最后接触时间但不重复加分 */
+      state.learnedCards[c.id] = Date.now();
+      saveState();
+      if(gain){
+        gain.textContent = '再听一遍';
+        gain.classList.add('on');
+      }
+    }
+    speak(c.name);
+    babySwapAnim();
+  }
+
+  function babySay(){
+    var list = babyList(), c = list[babyIdx];
+    if(c) speak(c.name);
+  }
+
+  /* ===== 学习地图渲染 ===== */
+  var kbDomain = 'lang';
+  var kbOpen = {};
+  var KB_ARROW = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+
+  function kbIsOpen(sk){
+    if(kbOpen[sk] === undefined) return sk === currentStage().key;
+    return !!kbOpen[sk];
+  }
+
+  function renderKB(){
+    var all = kbAllStats();
+    document.getElementById('kbProgressTxt').textContent = all.got + ' / ' + all.total;
+    document.getElementById('kbProgress').innerHTML = svgRing(all.total ? all.got / all.total : 0);
+
+    var cur = currentStage();
+    var stageGot = 0, stageTot = 0;
+    KB_DOMAINS.forEach(function(d){
+      var s = kbStageStats(cur.key, d.id);
+      stageGot += s.got; stageTot += s.total;
+    });
+    document.getElementById('kbSummary').innerHTML =
+      '<span class="chip blue">当前台阶 ' + cur.ageLabel + ' · 已掌握 ' + stageGot + '/' + stageTot + '</span>' +
+      '<span class="chip">全库 ' + kbAllStats().got + ' 项</span>';
+
+    document.getElementById('kbDomains').innerHTML = KB_DOMAINS.map(function(d){
+      var on = d.id === kbDomain;
+      var st = kbDomainStats(d.id);
+      var style = on ? ' style="background:' + d.color + ';box-shadow:0 6px 14px ' + d.color + '55;"' : '';
+      return '<button class="kb-d' + (on ? ' on' : '') + '" type="button" data-kbd="' + d.id + '"' + style + '>' +
+        d.name + '<span class="n">' + st.got + '/' + st.total + '</span></button>';
+    }).join('');
+
+    document.getElementById('kbStages').innerHTML = STAGES.map(function(st){
+      var arr = kbItemsOf(st.key, kbDomain);
+      var stt = kbStageStats(st.key, kbDomain);
+      var open = kbIsOpen(st.key);
+      var isCur = st.key === cur.key;
+
+      var head = '<button class="kb-sh' + (open ? ' open' : '') + '" type="button" data-kbs="' + st.key + '">' +
+        '<span class="age">' + st.ageLabel + '</span>' +
+        '<span class="nm">' + st.name + (isCur ? ' · 当前' : '') + '</span>' +
+        '<span class="cnt">' + stt.got + '/' + stt.total + '</span>' +
+        '<span class="ar">' + KB_ARROW + '</span>' +
+      '</button>';
+
+      var body = '<div class="kb-body' + (open ? ' open' : '') + '">' + arr.map(function(it, i){
+        var key = kbKeyOf(st.key, kbDomain, i);
+        var on = !!state.know[key];
+        return '<div class="kb-item' + (on ? ' done' : '') + '">' +
+          '<button class="kb-k' + (on ? ' on' : '') + '" type="button" data-kbk="' + key + '" aria-label="标记已掌握">' +
+            (on ? IC.check : '') + '</button>' +
+          '<div class="kb-txt"><span class="kb-n">' + esc(it[0]) + '</span>' +
+            '<span class="kb-h">' + esc(it[1]) + '</span></div>' +
+          '<button class="kb-add" type="button" data-kbadd="' + key + '">加入今天</button>' +
+        '</div>';
+      }).join('') + '</div>';
+
+      return '<div class="kb-stage' + (isCur ? ' cur' : '') + '">' + head + body + '</div>';
+    }).join('');
+  }
+
+  /* 统一刷新入口 */
+  function refreshAll(){
+    renderHeader();
+    renderToday();
+    renderCards();
+    renderHabits();
+    renderRewards();
+    renderGrowth();
+    renderAgeEvents();
+    renderAgeNotice();
+    renderKB();
+    renderBackupHint();
+  }
+
+  /* ===== 事件处理（改数据 → refreshAll） ===== */
+  function toggleStageTask(id){
+    var tk = todayKey();
+    if(!state.daily[tk]) state.daily[tk] = {};
+    if(state.daily[tk][id]){ delete state.daily[tk][id]; }
+    else { state.daily[tk][id] = 1; toast('完成啦 +2 分'); }
+    if(!Object.keys(state.daily[tk]).length) delete state.daily[tk];
+    saveState();
+    refreshAll();
+  }
+
+  function toggleTask(id){
+    var t = state.tasks.filter(function(x){ return x.id === id; })[0];
+    if(!t) return;
+    if(t.done){ t.done = false; t.doneDate = ''; toast('已取消完成'); }
+    else { t.done = true; t.doneDate = todayKey(); toast('完成啦！+3 分'); }
+    saveState();
+    refreshAll();
+  }
+
+  function postponeTask(id){
+    var t = state.tasks.filter(function(x){ return x.id === id; })[0];
+    if(!t) return;
+    t.due = todayKey();
+    saveState();
+    refreshAll();
+    toast('已顺延到今天');
+  }
+
+  function removeTask(id){
+    state.tasks = state.tasks.filter(function(x){ return x.id !== id; });
+    saveState();
+    refreshAll();
+    toast('已删除');
+  }
+
+  function addTask(){
+    var el = document.getElementById('taskInput');
+    var v = (el.value || '').trim();
+    if(!v){ el.focus(); return; }
+    state.tasks.push({ id: uid(), title: v.slice(0, 60), due: todayKey(), done: false, doneDate: '' });
+    el.value = '';
+    saveState();
+    refreshAll();
+    toast('已加入清单');
+  }
+
+  function tapCard(id){
+    var card = CARD_LIST.filter(function(c){ return c.id === id; })[0];
+    if(!card) return;
+    if(!state.learnedCards[id]){
+      state.learnedCards[id] = Date.now();
+      saveState();
+      refreshAll();
+      toast('认识「' + card.name + '」啦！+5 分');
+    }else{
+      state.learnedCards[id] = Date.now();
+      saveState();
+      toast('再复习一遍「' + card.name + '」');
+    }
+    speak(card.name);
+    var node = document.querySelector('[data-card="' + id + '"]');
+    if(node){
+      node.classList.remove('pop');
+      void node.offsetWidth;
+      node.classList.add('pop');
+    }
+  }
+
+  function randomCard(){
+    var list = stageCardList();
+    var pool = list.filter(function(c){ return !state.learnedCards[c.id]; });
+    if(!pool.length) pool = list;
+    if(!pool.length) return;
+    var pick = pool[Math.floor(Math.random() * pool.length)];
+    var node = document.querySelector('[data-card="' + pick.id + '"]');
+    if(node && node.scrollIntoView){
+      try{ node.scrollIntoView({ behavior:'smooth', block:'center' }); }catch(e){ node.scrollIntoView(); }
+    }
+    setTimeout(function(){ tapCard(pick.id); }, 220);
+  }
+
+  function toggleAgeNode(id){
+    ageOpenMap[id] = !ageIsOpen(id);
+    refreshAll();
+  }
+
+  function toggleAgeDone(id){
+    if(state.ageDone[id]){
+      delete state.ageDone[id];
+      toast('已撤销标记');
+    }else{
+      state.ageDone[id] = todayKey();
+      ageOpenMap[id] = false;
+      toast('这个节点记下了');
+    }
+    saveState();
+    refreshAll();
+  }
+
+  function addAgeToToday(id){
+    var ev = AGE_EVENTS.filter(function(x){ return x.id === id; })[0];
+    if(!ev) return;
+    var dup = state.tasks.filter(function(t){ return !t.done && t.title === ev.title; })[0];
+    if(dup){ toast('今天清单里已经有这条了'); return; }
+    state.tasks.push({ id: uid(), title: ev.title.slice(0, 60), due: todayKey(), done: false, doneDate: '' });
+    saveState();
+    refreshAll();
+    toast('已加入「今天要处理」');
+  }
+
+  function focusAgeNode(){
+    var f = ageEventFocus();
+    if(!f) return;
+    ageOpenMap[f.ev.id] = true;
+    refreshAll();
+    var sec = document.getElementById('secGrowth');
+    if(sec && sec.scrollIntoView){
+      try{ sec.scrollIntoView({ behavior:'smooth', block:'start' }); }catch(e){ sec.scrollIntoView(); }
+    }
+  }
+
+  function toggleKnow(key){
+    if(state.know[key]){ delete state.know[key]; toast('已取消标记'); }
+    else { state.know[key] = 1; toast('掌握一项，+1 分'); }
+    saveState();
+    refreshAll();
+  }
+
+  function addKnowToToday(key){
+    var it = kbFind(key);
+    if(!it) return;
+    var dup = state.tasks.filter(function(t){ return !t.done && t.title === it.name; })[0];
+    if(dup){ toast('今天清单里已经有这条了'); return; }
+    state.tasks.push({ id: uid(), title: String(it.name).slice(0, 60), due: todayKey(), done: false, doneDate: '' });
+    saveState();
+    refreshAll();
+    toast('已加入「今天要处理」');
+  }
+
+  function toggleHabit(habitId, date){
+    if(!date || date > todayKey()) return;
+    if(!state.habits[date]) state.habits[date] = {};
+    var day = state.habits[date];
+    if(day[habitId]){ delete day[habitId]; }
+    else {
+      day[habitId] = 1;
+      if(date === todayKey()) toast('打卡成功 +2 分');
+    }
+    if(!Object.keys(day).length) delete state.habits[date];
+    saveState();
+    refreshAll();
+  }
+
+  function redeem(id){
+    var r = REWARDS.filter(function(x){ return x.id === id; })[0];
+    if(!r) return;
+    var bal = computeBalance();
+    if(bal < r.cost){ toast('还差 ' + (r.cost - bal) + ' 分，继续加油'); return; }
+    state.redeemed.push({ id: r.id, name: r.name, cost: r.cost, ts: todayKey() });
+    saveState();
+    refreshAll();
+    toast('兑换成功：' + r.name);
+  }
+
+  function addGrowth(){
+    var hEl = document.getElementById('gHeight');
+    var wEl = document.getElementById('gWeight');
+    var h = parseFloat(hEl.value);
+    var w = parseFloat(wEl.value);
+    if(!h || isNaN(h)){ toast('先填一个身高（cm）'); hEl.focus(); return; }
+    if(h < 40 || h > 150){ toast('身高填得像一点呗（40-150cm）'); hEl.focus(); return; }
+    if(w && (isNaN(w) || w < 5 || w > 50)){ toast('体重范围 5-50kg'); wEl.focus(); return; }
+    var date = todayKey();
+    var exist = state.growth.filter(function(g){ return g.date === date; })[0];
+    if(exist){ exist.h = h; if(w) exist.w = w; }
+    else { state.growth.push({ date: date, h: h, w: w || 0 }); }
+    hEl.value = ''; wEl.value = '';
+    saveState();
+    refreshAll();
+    toast('已记录 ' + h + ' cm');
+  }
+
+  function addMilestone(){
+    var el = document.getElementById('msInput');
+    var v = (el.value || '').trim();
+    if(!v){ el.focus(); return; }
+    state.milestones.push({ date: todayKey(), text: v.slice(0, 50) });
+    el.value = '';
+    saveState();
+    refreshAll();
+    toast('记下了');
+  }
+
+  function clearSample(){
+    openConfirm('清空示例数据？', '会删掉示例的待办、打卡和卡片记录，换成干净的开始。这个操作不能撤销。', function(){
+      var keepName = state.name === '小葡萄' ? '小石头' : state.name;
+      var keepBirth = state.birthday;
+      state = blankState();
+      state.name = keepName;
+      state.birthday = keepBirth;
+      state.lastStageKey = currentStage().key;
+      saveState();
+      refreshAll();
+      toast('已清空示例，开始记录吧');
+    });
+  }
+
+  function clearAll(){
+    openConfirm('清空全部数据？', '待办、打卡、积分、成长记录会全部删除，不能撤销。建议先导出一次备份。', function(){
+      var keepBirth = state.birthday;
+      state = blankState();
+      state.birthday = keepBirth;
+      saveState();
+      refreshAll();
+      toast('已清空');
+    });
+  }
+
+  /* ===== 备份 / 导入 ===== */
+  function exportJSON(){
+    state.backupHintDismissed = true;
+    saveState();
+    var data = JSON.stringify(state, null, 2);
+    var blob = new Blob([data], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = '成长台备份_' + todayKey() + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+    refreshAll();
+    toast('备份已下载');
+  }
+
+  function handleImportFile(e){
+    var file = e.target.files && e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var obj = JSON.parse(String(reader.result));
+        if(!obj || typeof obj !== 'object') throw new Error('bad');
+        openConfirm('导入这份备份？', '会用备份里的数据覆盖当前所有记录。当前数据建议先导出一次。', function(){
+          state = normalize(obj);
+          saveState();
+          refreshAll();
+          toast('导入成功');
+        });
+      }catch(err){
+        toast('这个文件读不出来，确认是导出的 JSON 吗');
+      }
+      e.target.value = '';
+    };
+    reader.readAsText(file);
+  }
+
+  /* ===== 弹窗 ===== */
+  var confirmCb = null;
+  function openConfirm(title, desc, cb){
+    document.getElementById('cfTitle').textContent = title;
+    document.getElementById('cfDesc').textContent = desc;
+    confirmCb = cb;
+    document.getElementById('confirmModal').classList.add('show');
+  }
+  function closeConfirm(){
+    document.getElementById('confirmModal').classList.remove('show');
+    confirmCb = null;
+  }
+  function openSettings(){
+    document.getElementById('nameInput').value = state.name;
+    document.getElementById('birthInput').value = state.birthday;
+    renderRoadmap();
+    document.getElementById('settingsModal').classList.add('show');
+  }
+  function closeSettings(){
+    document.getElementById('settingsModal').classList.remove('show');
+  }
+
+  /* ===== 绑定 ===== */
+  function bindEvents(){
+    document.getElementById('btnAddTask').addEventListener('click', addTask);
+    document.getElementById('taskInput').addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); addTask(); }
+    });
+
+    document.getElementById('stageTaskList').addEventListener('click', function(e){
+      var b = e.target.closest('[data-stask]');
+      if(b) toggleStageTask(b.getAttribute('data-stask'));
+    });
+
+    document.getElementById('todayList').addEventListener('click', function(e){
+      var tg = e.target.closest('[data-toggle]');
+      if(tg){ toggleTask(tg.getAttribute('data-toggle')); return; }
+      var po = e.target.closest('[data-postpone]');
+      if(po){ postponeTask(po.getAttribute('data-postpone')); return; }
+      var dl = e.target.closest('[data-del]');
+      if(dl){ removeTask(dl.getAttribute('data-del')); }
+    });
+
+    document.getElementById('cardGrid').addEventListener('click', function(e){
+      var c = e.target.closest('[data-card]');
+      if(c) tapCard(c.getAttribute('data-card'));
+    });
+    document.getElementById('btnRandomCard').addEventListener('click', randomCard);
+
+    /* ---- 宝宝模式 ---- */
+    document.getElementById('btnBaby').addEventListener('click', function(){ openBabyMode(); });
+    document.getElementById('btnBabyFromCards').addEventListener('click', function(){ openBabyMode(); });
+    document.getElementById('btnBabyPrev').addEventListener('click', function(){ babyStep(-1); });
+    document.getElementById('btnBabyNext').addEventListener('click', function(){ babyStep(1); });
+    document.getElementById('btnBabySay').addEventListener('click', babySay);
+
+    var usedTouch = false, touchStart = null;
+    var stageEl = document.getElementById('babyStage');
+    stageEl.addEventListener('touchstart', function(e){
+      var t = e.changedTouches[0];
+      touchStart = { x: t.clientX, y: t.clientY };
+    }, { passive: true });
+    stageEl.addEventListener('touchend', function(e){
+      if(!touchStart) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - touchStart.x, dy = t.clientY - touchStart.y;
+      touchStart = null;
+      usedTouch = true;
+      setTimeout(function(){ usedTouch = false; }, 520);
+      if(Math.abs(dx) > 46 && Math.abs(dx) > Math.abs(dy) * 1.4){
+        babyStep(dx < 0 ? 1 : -1);
+      }else if(Math.abs(dx) < 14 && Math.abs(dy) < 14){
+        babyTap();
+      }
+    }, { passive: true });
+    document.getElementById('babyCard').addEventListener('click', function(){
+      if(usedTouch) return;
+      babyTap();
+    });
+
+    /* 长按 >0.8 秒才退出，防孩子误触；短按给提示 */
+    var exitBtn = document.getElementById('btnBabyExit'), exitHold = null, holdAt = 0;
+    function startHold(){
+      if(!babyOpen) return;
+      holdAt = Date.now();
+      exitBtn.classList.add('holding');
+      exitBtn.textContent = '继续按住…';
+      if(exitHold) clearTimeout(exitHold);
+      exitHold = setTimeout(function(){
+        exitHold = null;
+        endHold();
+        closeBabyMode();
+      }, 800);
+    }
+    function endHold(){
+      var held = holdAt ? Date.now() - holdAt : 0;
+      if(exitHold){ clearTimeout(exitHold); exitHold = null; }
+      exitBtn.classList.remove('holding');
+      exitBtn.textContent = '长按退出';
+      holdAt = 0;
+      if(babyOpen && held > 0 && held < 400) toast('要退出请按住不放约 1 秒');
+    }
+    exitBtn.addEventListener('pointerdown', startHold);
+    exitBtn.addEventListener('pointerup', endHold);
+    exitBtn.addEventListener('pointerleave', endHold);
+    exitBtn.addEventListener('pointercancel', endHold);
+    if(!window.PointerEvent){
+      exitBtn.addEventListener('click', function(){ if(babyOpen) closeBabyMode(); });
+    }
+
+    document.addEventListener('keydown', function(e){
+      if(!babyOpen) return;
+      if(e.key === 'ArrowRight'){ e.preventDefault(); babyStep(1); }
+      else if(e.key === 'ArrowLeft'){ e.preventDefault(); babyStep(-1); }
+      else if(e.key === 'Escape'){ closeBabyMode(); }
+      else if(e.key === ' ' || e.key === 'Spacebar'){ e.preventDefault(); babySay(); }
+    });
+
+    document.getElementById('habitMatrix').addEventListener('click', function(e){
+      var cell = e.target.closest('[data-habit]');
+      if(cell) toggleHabit(cell.getAttribute('data-habit'), cell.getAttribute('data-date'));
+    });
+
+    document.getElementById('kbDomains').addEventListener('click', function(e){
+      var b = e.target.closest('[data-kbd]');
+      if(!b) return;
+      kbDomain = b.getAttribute('data-kbd');
+      refreshAll();
+    });
+
+    document.getElementById('kbStages').addEventListener('click', function(e){
+      var sh = e.target.closest('[data-kbs]');
+      if(sh){
+        var k = sh.getAttribute('data-kbs');
+        kbOpen[k] = !kbIsOpen(k);
+        refreshAll();
+        return;
+      }
+      var kb = e.target.closest('[data-kbk]');
+      if(kb){ toggleKnow(kb.getAttribute('data-kbk')); return; }
+      var ad = e.target.closest('[data-kbadd]');
+      if(ad){ addKnowToToday(ad.getAttribute('data-kbadd')); }
+    });
+
+    document.getElementById('rewardList').addEventListener('click', function(e){
+      var b = e.target.closest('[data-redeem]');
+      if(b) redeem(b.getAttribute('data-redeem'));
+    });
+
+    document.getElementById('ageList').addEventListener('click', function(e){
+      var h = e.target.closest('[data-age]');
+      if(h){ toggleAgeNode(h.getAttribute('data-age')); return; }
+      var dn = e.target.closest('[data-agedone]');
+      if(dn){ toggleAgeDone(dn.getAttribute('data-agedone')); return; }
+      var ad = e.target.closest('[data-ageadd]');
+      if(ad){ addAgeToToday(ad.getAttribute('data-ageadd')); }
+    });
+    document.getElementById('ageNotice').addEventListener('click', focusAgeNode);
+
+    document.getElementById('btnAddGrowth').addEventListener('click', addGrowth);
+    document.getElementById('gModeH').addEventListener('click', function(){ setGrowthMode('h'); });
+    document.getElementById('gModeW').addEventListener('click', function(){ setGrowthMode('w'); });
+    document.getElementById('gHeight').addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); addGrowth(); }
+    });
+    document.getElementById('btnAddMs').addEventListener('click', addMilestone);
+    document.getElementById('msInput').addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); addMilestone(); }
+    });
+
+    document.getElementById('btnExport').addEventListener('click', exportJSON);
+    document.getElementById('setExport').addEventListener('click', exportJSON);
+    document.getElementById('btnImport').addEventListener('click', function(){
+      document.getElementById('importFile').click();
+    });
+    document.getElementById('setImport').addEventListener('click', function(){
+      document.getElementById('importFile').click();
+    });
+    document.getElementById('importFile').addEventListener('change', handleImportFile);
+    document.getElementById('btnBackupNow').addEventListener('click', exportJSON);
+
+    document.getElementById('btnClearSample').addEventListener('click', clearSample);
+    document.getElementById('setClearSample').addEventListener('click', clearSample);
+    document.getElementById('setClearAll').addEventListener('click', clearAll);
+
+    document.getElementById('btnSettings').addEventListener('click', openSettings);
+    document.getElementById('setCancel').addEventListener('click', closeSettings);
+    document.getElementById('setSave').addEventListener('click', function(){
+      var prevKey = currentStage().key;
+      var v = (document.getElementById('nameInput').value || '').trim();
+      if(v){ state.name = v.slice(0, 12); }
+      var bd = document.getElementById('birthInput').value;
+      if(bd && /^\d{4}-\d{2}-\d{2}$/.test(bd)){
+        state.birthday = bd;
+      }
+      var nowKey = currentStage().key;
+      state.lastStageKey = nowKey;
+      saveState();
+      refreshAll();
+      closeSettings();
+      toast(prevKey !== nowKey ? '已切到新台阶：' + currentStage().ageLabel : '已保存');
+    });
+
+    document.getElementById('cfCancel').addEventListener('click', closeConfirm);
+    document.getElementById('cfOk').addEventListener('click', function(){
+      var cb = confirmCb;
+      closeConfirm();
+      if(cb) cb();
+    });
+    document.getElementById('confirmModal').addEventListener('click', function(e){
+      if(e.target === this) closeConfirm();
+    });
+    document.getElementById('settingsModal').addEventListener('click', function(e){
+      if(e.target === this) closeSettings();
+    });
+
+    var nav = document.getElementById('nav');
+    nav.addEventListener('click', function(e){
+      var a = e.target.closest('a');
+      if(!a) return;
+      Array.prototype.forEach.call(nav.querySelectorAll('a'), function(x){ x.classList.remove('on'); });
+      a.classList.add('on');
+    });
+  }
+
+  /* ===== 启动（顺序固定：绑事件 → 统一渲染） ===== */
+  function init(){
+    bindEvents();
+    refreshAll();
+    var st = currentStage();
+    if(state.lastStageKey && state.lastStageKey !== st.key){
+      setTimeout(function(){ toast('已进入新台阶：' + st.ageLabel + ' · ' + st.name); }, 500);
+    }
+    state.lastStageKey = st.key;
+    saveState();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  }else{
+    init();
+  }
+})();
+</script>
+</body>
+</html>
