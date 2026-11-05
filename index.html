@@ -1268,19 +1268,59 @@
   function uid(){ return 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
 
   var lastSpeak = 0;
+  var zhVoice = null, voiceReady = false, speakWarned = false;
+  function pickVoice(){
+    try{
+      if(!('speechSynthesis' in window)) return null;
+      var vs = window.speechSynthesis.getVoices() || [];
+      var i, firstZh = null;
+      for(i = 0; i < vs.length; i++){
+        if(/^zh([-_]cn)?$/i.test(vs[i].lang)) return vs[i];
+        if(!firstZh && /^zh/i.test(vs[i].lang)) firstZh = vs[i];
+      }
+      return firstZh;
+    }catch(e){ return null; }
+  }
+  function refreshVoice(){
+    var v = pickVoice();
+    if(v){ zhVoice = v; voiceReady = true; }
+  }
+  if('speechSynthesis' in window){
+    refreshVoice();
+    try{ window.speechSynthesis.addEventListener('voiceschanged', refreshVoice); }
+    catch(e){ try{ window.speechSynthesis.onvoiceschanged = refreshVoice; }catch(e2){} }
+  }
   function speak(text){
     try{
-      if(!('speechSynthesis' in window)) return;
+      if(!('speechSynthesis' in window)){
+        if(!speakWarned){
+          speakWarned = true;
+          var wx = /MicroMessenger/i.test(navigator.userAgent);
+          toast(wx ? '微信里开不了声音：点右上角···选「在浏览器打开」' : '这个浏览器不支持朗读，换 Safari 或 Chrome 试试');
+        }
+        return;
+      }
       var now = Date.now();
       if(now - lastSpeak < 280) return;
       lastSpeak = now;
+      if(!voiceReady) refreshVoice();
       window.speechSynthesis.cancel();
       var u = new SpeechSynthesisUtterance(text);
-      u.lang = 'zh-CN';
+      if(zhVoice) u.voice = zhVoice;
+      u.lang = zhVoice ? zhVoice.lang : 'zh-CN';
       u.rate = 0.82;
       u.pitch = 1.15;
+      u.onerror = function(ev){
+        if(ev && ev.error === 'interrupted') return;
+        if(!speakWarned){
+          speakWarned = true;
+          toast('朗读没出声：检查音量和静音键，或换个浏览器试试');
+        }
+      };
       window.speechSynthesis.speak(u);
-    }catch(e){ /* 不支持就安静跳过 */ }
+    }catch(e){
+      if(!speakWarned){ speakWarned = true; toast('朗读初始化失败，换个浏览器试试'); }
+    }
   }
 
   var toastTimer = null;
