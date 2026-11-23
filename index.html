@@ -76,6 +76,7 @@ footer{text-align:center;font-size:11px;color:#5f6479;margin-top:24px}
 <div class="xpbar"><div class="xpfill" id="xpFill"></div></div>
 <div class="xpline"><span id="xpTxt">经验 0</span><span id="stWrong">复活甲 0</span></div>
 <div class="daily"><div class="fire">🔥</div><div><div>今日经验 <b id="dXP">0</b> / 100 · <span id="dStreak">连续 0 天</span></div><div style="color:#8a8fa8;font-size:11px">每日任务清完，才好去排位哦</div></div></div>
+<div class="daily" style="margin-top:8px"><div class="fire" id="heroIcon">🛡</div><div style="flex:1"><div>出战英雄：<select id="heroSel" style="background:#202536;color:#fff;border:1px solid #3a4058;border-radius:6px;padding:2px 6px;font-size:12px;max-width:180px"></select></div><div style="color:#8a8fa8;font-size:11px" id="heroMastery">熟练度 见习 · 0/50</div></div></div>
 
 <nav>
   <button data-p="read" class="on">📖 认读</button>
@@ -85,6 +86,7 @@ footer{text-align:center;font-size:11px;color:#5f6479;margin-top:24px}
   <button data-p="gram">📜 语法</button>
   <button data-p="speed">⏱ 限时</button>
   <button data-p="revive">🛡 复活甲</button>
+  <button data-p="teacher">🧑‍🏫 小老师</button>
 </nav>
 
 <div class="filters" id="filterRow">
@@ -165,8 +167,22 @@ footer{text-align:center;font-size:11px;color:#5f6479;margin-top:24px}
 
 <div class="pane" id="pane-revive">
   <div class="progress" id="rvTag">复活甲里共有 0 个对手</div>
-  <div class="row"><button class="main" id="rvStart">⚔️ 复活甲复习</button><button id="rvClear">清空复活甲</button></div>
+  <div class="row"><button class="main" id="rvStart">⚔️ 复习到期对手</button><button id="rvClear">清空复活甲</button></div>
   <div id="rvList" style="margin-top:12px"></div>
+</div>
+
+<div class="pane" id="pane-teacher">
+  <div class="progress" id="tcTag">🧑‍🏫 小老师模式：抽 3 个词出题考考爸爸/妈妈，TA 答对了你才涨经验！</div>
+  <div class="card">
+    <div class="big" id="tcWord" style="display:none"></div>
+    <div class="phon" id="tcPhon" style="display:none"></div>
+    <div class="opts" id="tcOpts"></div>
+    <div class="fb" id="tcFb"></div>
+    <div class="row" id="tcJudge" style="display:none"><button class="main" id="tcRight">✅ TA答对了</button><button id="tcWrong">❌ TA答错了</button></div>
+    <div class="row"><button class="main" id="tcDraw">🎲 抽 3 个词当考题</button></div>
+  </div>
+  <div class="row" style="margin-top:14px"><button id="tcReportBtn">📊 生成家长周报</button></div>
+  <div class="card" id="tcReportBox" style="display:none;margin-top:10px;text-align:left"></div>
 </div>
 
 <footer>经验·段位·错题进度自动保存在本设备 · 少年，去上分吧！⚔️</footer>
@@ -265,7 +281,7 @@ const GRAMMAR=[["There ___ a book and two pens on the desk.",["is","are","am","b
 const RANKS=[["倔强青铜",0],["秩序白银",150],["荣耀黄金",400],["尊贵铂金",800],["永恒钻石",1400],["至尊星耀",2200],["最强王者",3200],["荣耀王者",4500]];
 const COMBOS={2:"双杀！",3:"三杀！",4:"四杀！",5:"五杀！",7:"超神！"};
 const LS='vocab_canyon_v5';
-let S={known:{},xp:0,wrong:{},grWrong:{},best:0,daily:{date:'',xp:0,streak:0,last:''}};
+let S={known:{},xp:0,wrong:{},grWrong:{},best:0,daily:{date:'',xp:0,streak:0,last:''},hero:'',mastery:{},sched:{},log:{}};
 try{const raw=localStorage.getItem(LS);if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
 
 function save(){localStorage.setItem(LS,JSON.stringify(S));}
@@ -281,9 +297,56 @@ function checkDaily(){
 function rankOf(xp){let r=0;RANKS.forEach((x,i)=>{if(xp>=x[1])r=i;});return r;}
 function gainXP(n){
   const before=rankOf(S.xp);
-  S.xp+=n;S.daily.xp+=n;save();renderTop();
+  S.xp+=n;S.daily.xp+=n;
+  const d=today();S.log[d]=(S.log[d]||0)+n;
+  save();renderTop();
   const after=rankOf(S.xp);
   if(after>before)showRankUp(after);
+}
+/* ===== 出战英雄+熟练度 ===== */
+const MASTERY=[['见习',0],['资深',50],['精英',150],['宗师',300],['传说',600]];
+function mLevel(xp){let l=0;MASTERY.forEach((m,i)=>{if(xp>=m[1])l=i;});return l;}
+function heroRender(){
+  const h=HEROES.find(x=>x.n===S.hero);
+  if(!h){document.getElementById('heroMastery').textContent='选一位英雄出战吧';return;}
+  document.getElementById('heroIcon').textContent=h.e||'🛡';
+  const xp=S.mastery[h.n]||0,l=mLevel(xp),nxt=MASTERY[Math.min(l+1,4)];
+  document.getElementById('heroMastery').textContent='熟练度 '+MASTERY[l][0]+' · '+xp+(nxt[1]>xp?' / '+nxt[1]:' · MAX（为TA刷词就是爱TA）');
+}
+function heroInit(){
+  const sel=document.getElementById('heroSel');
+  HEROES.forEach(h=>{const o=document.createElement('option');o.value=h.n;o.textContent=(h.e||'')+' '+h.n+'「'+h.t+'」';sel.appendChild(o);});
+  if(S.hero)sel.value=S.hero;
+  sel.onchange=()=>{S.hero=sel.value;save();heroRender();toast('出战英雄：'+sel.value+'！答对涨TA熟练度');};
+  heroRender();
+}
+function gainMastery(n){
+  if(!S.hero)return;
+  const before=mLevel(S.mastery[S.hero]||0);
+  S.mastery[S.hero]=(S.mastery[S.hero]||0)+n;
+  const after=mLevel(S.mastery[S.hero]);
+  save();heroRender();
+  if(after>before)toast('🎉 '+S.hero+' 熟练度提升：'+MASTERY[after][0]+'！');
+}
+/* ===== 遗忘曲线排程（SM-2 简化版：1→3→7→15 天） ===== */
+const SCHED_STEPS=[1,3,7,15];
+function onWordWrong(word){
+  S.sched[word]={lvl:0,due:Date.now()+864e5};
+}
+function onWordCorrect(word){
+  if(!S.wrong[word])return;
+  const lvl=((S.sched[word]&&S.sched[word].lvl)||0)+1;
+  if(lvl>=SCHED_STEPS.length){
+    delete S.wrong[word];delete S.sched[word];
+    toast('🎓 '+word+' 复活毕业！四轮检验全过，彻底掌握！');
+  }else{
+    S.sched[word]={lvl:lvl,due:Date.now()+SCHED_STEPS[lvl]*864e5};
+    toast('🛡 '+word+' 记忆加固！'+SCHED_STEPS[lvl]+' 天后再来检验');
+  }
+}
+function dueWords(){
+  const now=Date.now();
+  return Object.keys(S.wrong).filter(k=>!S.sched[k]||S.sched[k].due<=now);
 }
 function showRankUp(r){
   const ov=document.getElementById('rankUp');
@@ -418,6 +481,7 @@ function pickOpt(btn,o,w){
     fb.className='fb good';
     fb.textContent='✅ 答对！+10 经验'+(bonus?(' · 连击加成 +'+bonus):'');
     if(!S.known[w[0].toLowerCase()]){S.known[w[0].toLowerCase()]=1;}
+    onWordCorrect(w[0]);gainMastery(1);
     const mt=mnemoText(w);
     if(mt){document.getElementById('qzMnemo').textContent=mt;document.getElementById('qzMnemo').style.display='block';}
     const sn=SENT[w[0]];
@@ -425,7 +489,7 @@ function pickOpt(btn,o,w){
   }else{
     btn.classList.add('wrongpick');
     qzCombo=0;sfx('err');
-    S.wrong[w[0]]=(S.wrong[w[0]]||0)+1;
+    S.wrong[w[0]]=(S.wrong[w[0]]||0)+1;onWordWrong(w[0]);
     fb.className='fb bad';
     fb.textContent='❌ 正确答案：'+w[3]+'（已收入复活甲，答错的词稍后还会来找你）';
   }
@@ -465,10 +529,11 @@ function spCheck(){
     if(firstPass){gainXP(15);fb.textContent='✅ 一遍过！Master！+15 经验';if(!S.known[spCur[0].toLowerCase()])S.known[spCur[0].toLowerCase()]=1;}
     else{gainXP(8);fb.textContent='✅ 正确！+8 经验（用了提示，下次试试裸背）';}
     sfx('ok');
-    if(S.wrong[spCur[0]]){delete S.wrong[spCur[0]];toast(spCur[0]+' 复活成功！移出复活甲');}
+    gainMastery(1);
+    if(S.wrong[spCur[0]]){onWordCorrect(spCur[0]);}
     save();renderTop();
   }else{
-    S.wrong[spCur[0]]=(S.wrong[spCur[0]]||0)+1;save();
+    S.wrong[spCur[0]]=(S.wrong[spCur[0]]||0)+1;onWordWrong(spCur[0]);save();
     fb.className='fb bad';
     const a=v.toLowerCase().split(''),b=spCur[0].toLowerCase().split('');
     let diff=0;for(let i=0;i<Math.max(a.length,b.length);i++)if(a[i]!==b[i])diff++;
@@ -488,7 +553,7 @@ document.getElementById('spHint').onclick=()=>{
 };
 document.getElementById('spSkip').onclick=()=>{
   if(spDone)return;spDone=true;
-  S.wrong[spCur[0]]=(S.wrong[spCur[0]]||0)+1;save();renderTop();
+  S.wrong[spCur[0]]=(S.wrong[spCur[0]]||0)+1;onWordWrong(spCur[0]);save();renderTop();
   const fb=document.getElementById('spFb');
   fb.className='fb bad';
   fb.textContent='答案是：'+spCur[0]+' —— '+spCur[3]+'（已收入复活甲）';
@@ -527,14 +592,15 @@ function seNext(){
       if(seLock)return;seLock=true;
       if(o[1]){
         b.classList.add('correct');sfx('ok');
-        gainXP(10);
+        gainXP(10);gainMastery(1);
         if(!S.known[w[0].toLowerCase()])S.known[w[0].toLowerCase()]=1;
+        onWordCorrect(w[0]);
         fb.className='fb good';
         fb.textContent='✅ '+sn[0]+'（'+sn[1]+'）· +10 经验';
         speak(w[0]);
       }else{
         b.classList.add('wrongpick');sfx('err');
-        S.wrong[w[0]]=(S.wrong[w[0]]||0)+1;
+        S.wrong[w[0]]=(S.wrong[w[0]]||0)+1;onWordWrong(w[0]);
         fb.className='fb bad';
         fb.textContent='❌ 答案是 '+w[0]+'：'+sn[0]+'（'+sn[1]+'）';
       }
@@ -566,7 +632,7 @@ function grNext(){
       if(grLock)return;grLock=true;
       if(o[1]){
         b.classList.add('correct');sfx('ok');
-        gainXP(12);
+        gainXP(12);gainMastery(1);
         fb.className='fb good';
         fb.textContent='✅ 答对！+12 经验 · '+q[3];
       }else{
@@ -611,8 +677,8 @@ function tmNext(){
     b.textContent=o[0];
     b.onclick=()=>{
       if(tmLock)return;tmLock=true;
-      if(o[1]){tmScore++;sfx('ok');gainXP(3);}
-      else{sfx('err');S.wrong[tmCur[0]]=(S.wrong[tmCur[0]]||0)+1;save();}
+      if(o[1]){tmScore++;sfx('ok');gainXP(3);gainMastery(1);}
+      else{sfx('err');S.wrong[tmCur[0]]=(S.wrong[tmCur[0]]||0)+1;onWordWrong(tmCur[0]);save();}
       tmTick();tmNext();
     };
     box.appendChild(b);
@@ -627,28 +693,118 @@ function tmEnd(){
   renderTop();
 }
 
-/* ============ 复活甲 ============ */
+/* ============ 复活甲（遗忘曲线排程版） ============ */
 function rvRender(){
   const keys=Object.keys(S.wrong);
-  document.getElementById('rvTag').textContent='复活甲里共有 '+keys.length+' 个对手';
+  const due=dueWords();
+  document.getElementById('rvTag').textContent='复活甲里共有 '+keys.length+' 个对手 · 今日到期 '+due.length+' 个';
+  document.getElementById('rvStart').textContent='⚔️ 复习到期对手'+(due.length?'（'+due.length+'）':'');
   const list=document.getElementById('rvList');list.innerHTML='';
-  keys.sort((a,b)=>S.wrong[b]-S.wrong[a]).forEach(k=>{
+  const now=Date.now();
+  keys.sort((a,b)=>{
+    const da=S.sched[a]?S.sched[a].due:0,db=S.sched[b]?S.sched[b].due:0;
+    if(da!==db)return da-db;
+    return (S.wrong[b]-S.wrong[a]);
+  }).forEach(k=>{
     const d=document.createElement('div');d.className='revive-item';
     const meta=WORDS.find(w=>w[0].toLowerCase()===k.toLowerCase());
-    d.innerHTML='<span>'+k+(meta?(' · '+meta[3].slice(0,14)):'')+'</span><span class="n">被打败 '+S.wrong[k]+' 次</span>';
+    let when='今天到期';
+    if(S.sched[k]&&S.sched[k].due>now){const dd=Math.ceil((S.sched[k].due-now)/864e5);when=dd+' 天后再检验';}
+    d.innerHTML='<span>'+k+(meta?(' · '+meta[3].slice(0,14)):'')+'</span><span class="n">被打败 '+(S.wrong[k]||1)+' 次 · '+when+'</span>';
     list.appendChild(d);
   });
 }
 document.getElementById('rvStart').onclick=()=>{
-  const keys=Object.keys(S.wrong);
+  const due=dueWords();
+  const keys=due.length?due:Object.keys(S.wrong);
   if(!keys.length){toast('复活甲是空的，先去刷题喂饱它！');return;}
   qzPool=shuffle(keys.map(k=>WORDS.find(w=>w[0].toLowerCase()===k.toLowerCase())).filter(Boolean));
   qzIdx=-1;switchPane('quiz');qzNext();
-  toast('复仇模式：答对一次即可移出复活甲');
+  toast(due.length?('今天有 '+due.length+' 个对手到期！答对后按 1→3→7→15 天排期检验'):'还没到期的对手，先来一轮热身');
 };
 document.getElementById('rvClear').onclick=()=>{
   if(!Object.keys(S.wrong).length)return;
-  if(confirm('确定清空复活甲吗？错题记录将丢失。')){S.wrong={};save();rvRender();renderTop();}
+  if(confirm('确定清空复活甲吗？错题和复习排期将丢失。')){S.wrong={};S.sched={};save();rvRender();renderTop();}
+};
+
+/* ============ 小老师模式 + 家长周报 ============ */
+let tcList=[],tcIdx=-1,tcJudged=false;
+function tcDraw(){
+  const knownWords=Object.keys(S.known).map(k=>WORDS.find(w=>w[0].toLowerCase()===k.toLowerCase())).filter(Boolean);
+  const src=knownWords.length>=3?knownWords:WORDS.filter(w=>!isPhrase(w));
+  tcList=shuffle(src.slice()).slice(0,3);tcIdx=-1;
+  document.getElementById('tcFb').textContent='';document.getElementById('tcFb').className='fb';
+  document.getElementById('tcReportBox').style.display='none';
+  tcNext();
+}
+function tcNext(){
+  tcIdx++;
+  const optsBox=document.getElementById('tcOpts');
+  const judge=document.getElementById('tcJudge');
+  if(tcIdx>=tcList.length){
+    optsBox.innerHTML='';judge.style.display='none';
+    document.getElementById('tcWord').style.display='none';document.getElementById('tcPhon').style.display='none';
+    document.getElementById('tcTag').textContent='🎓 本轮出题完毕！小老师威武，明天继续考他们！';
+    document.getElementById('tcDraw').textContent='🎲 再抽 3 个词';
+    return;
+  }
+  tcJudged=false;
+  const w=tcList[tcIdx];
+  document.getElementById('tcTag').textContent='🧑‍🏫 第 '+(tcIdx+1)+' / '+tcList.length+' 题 · 让 TA 选，你来判';
+  document.getElementById('tcWord').style.display='block';document.getElementById('tcWord').textContent=w[0];
+  document.getElementById('tcPhon').style.display='block';document.getElementById('tcPhon').textContent=w[1];
+  const fb=document.getElementById('tcFb');fb.textContent='TA 选一个吧，然后你来判分';fb.className='fb';
+  const opts=[[w[3],true]];
+  const pool=WORDS.filter(x=>x[0]!==w[0]&&x[3]!==w[3]);shuffle(pool);
+  for(const o of pool){if(opts.length>=4)break;opts.push([o[3],false]);}
+  shuffle(opts);
+  optsBox.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('button');b.textContent=o[0];
+    b.onclick=()=>{if(tcJudged)return;fb.textContent='TA 选了「'+o[0].slice(0,10)+'…」——你判分：TA 答对了吗？';};
+    optsBox.appendChild(b);
+  });
+  judge.style.display='flex';
+  speak(w[0]);
+}
+document.getElementById('tcRight').onclick=()=>{
+  if(tcJudged||tcIdx<0||tcIdx>=tcList.length)return;tcJudged=true;
+  gainXP(8);sfx('ok');
+  const fb=document.getElementById('tcFb');
+  fb.className='fb good';fb.textContent='✅ 好老师！+8 经验 · 教别人是最强的学习';
+};
+document.getElementById('tcWrong').onclick=()=>{
+  if(tcJudged||tcIdx<0||tcIdx>=tcList.length)return;tcJudged=true;
+  const w=tcList[tcIdx];
+  const fb=document.getElementById('tcFb');
+  fb.className='fb bad';fb.textContent='❌ 没关系，正确答案是「'+w[3].slice(0,16)+'…」。给 TA 讲一遍，你讲得越明白，你自己记得越牢！';
+};
+document.getElementById('tcDraw').onclick=tcDraw;
+function reportText(){
+  let wk=0;for(let i=0;i<7;i++){const d=new Date(Date.now()-i*864e5).toDateString();wk+=S.log[d]||0;}
+  const wrongs=Object.entries(S.wrong).sort((a,b)=>(b[1]||1)-(a[1]||1)).slice(0,3);
+  const r=rankOf(S.xp);
+  return ['📊 峡谷词汇战记 · 家长速览',
+    '段位：'+RANKS[r][0]+'（总经验 '+S.xp+'）',
+    '战力（已掌握词条）：'+Object.keys(S.known).length+' / '+WORDS.length,
+    '近7天经验：'+wk+' · 连续打卡 '+(S.daily.streak||0)+' 天',
+    '限时挑战最高击杀：'+(S.best||0),
+    '复活甲在押：'+Object.keys(S.wrong).length+' 个（今日到期 '+dueWords().length+' 个，按1/3/7/15天间隔排期）',
+    '语法错题：'+Object.keys(S.grWrong).length+' 道',
+    '最常被打败的词：'+(wrongs.length?wrongs.map(x=>x[0]+'×'+x[1]).join('、'):'暂无'),
+    S.hero?('出战英雄：'+S.hero+'（熟练度 '+MASTERY[mLevel(S.mastery[S.hero]||0)][0]+'）'):'出战英雄：未选择',
+    '—— 数据存于本设备浏览器'].join('\n');
+}
+document.getElementById('tcReportBtn').onclick=()=>{
+  const box=document.getElementById('tcReportBox');
+  box.style.display='block';
+  box.innerHTML='<div style="white-space:pre-wrap;font-size:13px;line-height:1.9;color:#e8e6f0"></div><div class="row" style="margin-top:10px"><button class="main" id="tcCopy">📋 复制周报文字</button></div>';
+  box.querySelector('div').textContent=reportText();
+  box.querySelector('#tcCopy').onclick=()=>{
+    const txt=reportText();
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>toast('已复制，去发给家人吧！')).catch(()=>toast('复制失败，长按手动选择文字')); }
+    else toast('当前浏览器不支持一键复制，长按文字手动复制');
+  };
 };
 
 /* ============ 面板切换与启动 ============ */
@@ -664,6 +820,14 @@ function switchPane(p){
   else if(p==='sent')seStart();
   else if(p==='gram')grStart();
   else if(p==='revive')rvRender();
+  else if(p==='teacher'){
+    document.getElementById('tcTag').textContent='🧑‍🏫 小老师模式：抽 3 个词出题考考爸爸/妈妈，TA 答对了你才涨经验！';
+    document.getElementById('tcOpts').innerHTML='';
+    document.getElementById('tcWord').style.display='none';document.getElementById('tcPhon').style.display='none';
+    document.getElementById('tcJudge').style.display='none';
+    const fb=document.getElementById('tcFb');fb.textContent='';fb.className='fb';
+    document.getElementById('tcReportBox').style.display='none';
+  }
 }
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>switchPane(b.dataset.p));
 const sel=document.getElementById('unitSel');
@@ -672,7 +836,7 @@ sel.onchange=()=>{rdStart();};
 document.getElementById('shufChk').onchange=()=>rdStart();
 document.getElementById('weakChk').onchange=()=>rdStart();
 
-checkDaily();renderTop();rdStart();
+checkDaily();heroInit();renderTop();rdStart();
 </script>
 </body>
 </html>
