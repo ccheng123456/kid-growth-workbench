@@ -291,7 +291,7 @@ const RANKS=[["倔强青铜",0],["秩序白银",600],["荣耀黄金",1500],["尊
 const COMBOS={2:"双杀！",3:"三杀！",4:"四杀！",5:"五杀！",7:"超神！"};
 const LS='vocab_canyon_v6';
 const BATCH=30;
-let S={xp:0,wrong:{},grWrong:{},best:0,daily:{date:'',xp:0,streak:0,last:'',closed:false},hero:'',mastery:{},sched:{},log:{},done:{},plan:{date:'',batch:[]},steps:{},reviews:{},revDone:{}};
+let S={xp:0,wrong:{},grWrong:{},best:0,daily:{date:'',xp:0,streak:0,last:'',closed:false},hero:'',mastery:{},sched:{},log:{},done:{},plan:{date:'',batch:[]},steps:{},reviews:{},revDone:{},extra:{date:'',batch:[]}};
 try{
   const raw=localStorage.getItem(LS);
   if(raw){S=Object.assign(S,JSON.parse(raw));}
@@ -352,7 +352,7 @@ function stepDone(k,s){const st=S.steps[k];return !!(st&&st[s]);}
 function markStep(w,s){
   const k=w[0];
   if(S.done[k])return;
-  if(S.plan.batch.indexOf(k)<0)return;
+  if(S.plan.batch.indexOf(k)<0&&!(S.extra&&S.extra.batch.indexOf(k)>=0))return;
   const st=S.steps[k]=S.steps[k]||{};
   st[s]=1;
   const need=neededSteps(w);
@@ -378,7 +378,7 @@ function planRender(){
   document.getElementById('plChips').innerHTML='📖 认读 <span class="'+(c.rd>=b.length?'chipdone':'')+'">'+c.rd+'/'+b.length+'</span> · 🎯 选义 <span class="'+(c.qz>=b.length?'chipdone':'')+'">'+c.qz+'/'+b.length+'</span> · ✏️ 默写 <span class="'+(c.sp>=b.length?'chipdone':'')+'">'+c.sp+'/'+b.length+'</span> · 💬 例句 <span class="'+(c.sen>=b.length?'chipdone':'')+'">'+c.sen+'/'+b.length+'</span>';
   const all=b.length&&b.every(k=>S.done[k]);
   if(all&&!S.daily.closed){S.daily.closed=true;gainXP(30);sfx('up');toast('🎉 今日 '+b.length+' 词闭环完成，打卡成功！+30 经验');}
-  document.getElementById('plSub').textContent=all?'✅ 今日打卡完成！明天开启新一批 · 别忘去「复习」昨天的词':'四个关卡全过才算拿下 · 完成 '+b.length+' 词闭环即打卡成功';
+  document.getElementById('plSub').textContent=all?'✅ 今日打卡完成！想去「超量加练」多学多得？闭环照样算数 · 别忘复习昨天的词':'四个关卡全过才算拿下 · 完成 '+b.length+' 词闭环即打卡成功';
   document.getElementById('planCard').style.borderColor=all?'#5dcaa5':'#3a4058';
 }
 /* ===== 出战英雄+熟练度 ===== */
@@ -475,20 +475,32 @@ function mnemoText(w){
   return guardTag(w[0])||'';
 }
 function planWords(){return S.plan.batch.map(k=>WORDS.find(w=>w[0]===k)).filter(Boolean);}
-function freePool(n){return shuffle(WORDS.filter(w=>!S.done[w[0]]).slice()).slice(0,n||BATCH);}
+/* 超量加练池：四关共享同一池，闭环同样计入 done（30 词保底，多学多得） */
+function rollExtra(){
+  const t=today();
+  S.extra={date:t,batch:shuffle(WORDS.map(w=>w[0]).filter(k=>!S.done[k])).slice(0,BATCH)};
+}
+function extraPool(){
+  const t=today();
+  if(!S.extra||S.extra.date!==t)rollExtra();
+  let pool=S.extra.batch.map(k=>WORDS.find(w=>w[0]===k)).filter(w=>w&&!S.done[w[0]]);
+  if(!pool.length){rollExtra();pool=S.extra.batch.map(k=>WORDS.find(w=>w[0]===k));toast('⚡ 新一批超量加练已就绪，继续冲！');}
+  return pool;
+}
+function freePool(n){return extraPool();}
 
 /* ============ 认读 ============ */
 let rdPool=[],rdIdx=-1,rdShown=false,rdMode='plan';
 function rdStart(){
   let need=planWords().filter(w=>!S.done[w[0]]&&!stepDone(w[0],'rd'));
-  if(need.length){rdMode='plan';rdPool=need;}
+  if(need.length){rdMode='plan';rdPool=shuffle(need);}
   else{rdMode='free';rdPool=freePool();}
   rdIdx=-1;rdNext();
 }
 function rdNext(){
   if(rdMode==='plan'){
     rdPool=rdPool.filter(w=>!S.done[w[0]]&&!stepDone(w[0],'rd'));
-    if(!rdPool.length){rdMode='free';rdPool=freePool();toast('📖 今日认读全部完成 ✅ 进入自由加练');}
+    if(!rdPool.length){rdMode='free';rdPool=freePool();toast('📖 今日认读全部完成 ✅ 进入超量加练，多学多得');}
   }
   rdShown=false;
   if(rdIdx>=rdPool.length-1||rdIdx<0){rdIdx=0;}else{rdIdx++;if(rdIdx>=rdPool.length)rdIdx=0;}
@@ -506,7 +518,7 @@ function rdNext(){
   else sl.style.display='none';
   document.getElementById('readTag').textContent=rdMode==='plan'
     ?('📖 今日认读 '+rdPool.length+' 个待读 · 计划进度见顶部')
-    :'⚡ 自由加练（不计入打卡） · 第 '+(rdIdx+1)+' / '+rdPool.length;
+    :'⚡ 超量加练（多学多得，闭环照样算数） · 第 '+(rdIdx+1)+' / '+rdPool.length;
   speak(w[0]);
 }
 document.getElementById('rdMean').parentNode.addEventListener('click',function(e){
@@ -532,7 +544,7 @@ function qzStart(mode){
     if(qzMode==='plan'){
       let need=planWords().filter(w=>!S.done[w[0]]&&!stepDone(w[0],'qz'));
       if(!need.length){qzMode='free';}
-      qzPool=qzMode==='plan'?need:freePool();
+      qzPool=qzMode==='plan'?shuffle(need):freePool();
     }else if(qzMode==='free'){qzPool=freePool();}
   }
   qzKeep=false;
@@ -541,7 +553,7 @@ function qzStart(mode){
 function qzNext(){
   if(qzMode==='plan'){
     qzPool=qzPool.filter(w=>!S.done[w[0]]&&!stepDone(w[0],'qz'));
-    if(!qzPool.length){qzMode='free';qzPool=freePool();toast('🎯 今日选义全部完成 ✅ 进入自由加练');}
+    if(!qzPool.length){qzMode='free';qzPool=freePool();toast('🎯 今日选义全部完成 ✅ 进入超量加练，多学多得');}
   }
   if(qzMode==='review'&&qzIdx+1>=qzPool.length){
     S.revDone[qzRevDate]=true;gainXP(5);save();
@@ -569,7 +581,7 @@ function qzNext(){
     b.onclick=()=>pickOpt(b,o,w);
     box.appendChild(b);
   });
-  const modeTag={plan:'🎯 今日选义',revive:'🛡 复活甲复仇',review:'📖 往期复习',free:'⚡ 自由加练'}[qzMode];
+  const modeTag={plan:'🎯 今日选义',revive:'🛡 复活甲复仇',review:'📖 往期复习',free:'⚡ 超量加练'}[qzMode];
   document.getElementById('qzTag').textContent=modeTag+' · '+(qzIdx+1)+' / '+qzPool.length+' · 连击 '+qzCombo;
   speak(w[0]);
 }
@@ -607,14 +619,14 @@ document.getElementById('qzNext').onclick=()=>qzNext();
 let spPool=[],spIdx=-1,spCur=null,spHints=0,spDone=false,spMode='plan';
 function spStart(){
   let need=planWords().filter(w=>!S.done[w[0]]&&!stepDone(w[0],'sp'));
-  if(need.length){spMode='plan';spPool=need;}
+  if(need.length){spMode='plan';spPool=shuffle(need);}
   else{spMode='free';spPool=freePool();}
   spIdx=-1;spNext();
 }
 function spNext(){
   if(spMode==='plan'){
     spPool=spPool.filter(w=>!S.done[w[0]]&&!stepDone(w[0],'sp'));
-    if(!spPool.length){spMode='free';spPool=freePool();toast('✏️ 今日默写全部完成 ✅ 进入自由加练');}
+    if(!spPool.length){spMode='free';spPool=freePool();toast('✏️ 今日默写全部完成 ✅ 进入超量加练，多学多得');}
   }
   spIdx++;spHints=0;spDone=false;
   if(spIdx>=spPool.length)spIdx=0;
@@ -633,7 +645,7 @@ function spNext(){
   else sl.style.display='none';
   document.getElementById('spTag').textContent=spMode==='plan'
     ?'✏️ 今日默写 · 本组剩余 '+spPool.length+' 个（完成一个少一个）'
-    :'⚡ 自由加练（不计入打卡） · 第 '+(spIdx+1)+' / '+spPool.length;
+    :'⚡ 超量加练（多学多得，闭环照样算数） · 第 '+(spIdx+1)+' / '+spPool.length;
   speak(spCur[0]);
   inp.focus();
 }
@@ -687,7 +699,7 @@ document.getElementById('spSkip').onclick=()=>{
 let sePool=[],seIdx=-1,seLock=false,seMode='plan';
 function seStart(){
   let need=planWords().filter(w=>SENT[w[0]]&&!S.done[w[0]]&&!stepDone(w[0],'sen'));
-  if(need.length){seMode='plan';sePool=need;}
+  if(need.length){seMode='plan';sePool=shuffle(need);}
   else{seMode='free';sePool=shuffle(WORDS.filter(w=>SENT[w[0]]&&!S.done[w[0]])).slice(0,BATCH);}
   if(!sePool.length)sePool=shuffle(WORDS.filter(w=>SENT[w[0]])).slice(0,BATCH);
   seIdx=-1;seNext();
@@ -696,7 +708,7 @@ let seGuard=0;
 function seNext(){
   if(seMode==='plan'){
     sePool=sePool.filter(w=>SENT[w[0]]&&!S.done[w[0]]&&!stepDone(w[0],'sen'));
-    if(!sePool.length){seMode='free';sePool=shuffle(WORDS.filter(w=>SENT[w[0]])).slice(0,BATCH);toast('💬 今日例句全部完成 ✅ 进入自由加练');}
+    if(!sePool.length){seMode='free';sePool=shuffle(WORDS.filter(w=>SENT[w[0]])).slice(0,BATCH);toast('💬 今日例句全部完成 ✅ 进入超量加练，多学多得');}
   }
   seIdx++;seLock=false;
   if(seIdx>=sePool.length)seIdx=0;
@@ -745,7 +757,7 @@ function seNext(){
   });
   document.getElementById('seTag').textContent=seMode==='plan'
     ?'💬 今日例句 · 本组剩余 '+sePool.length+' 个'
-    :'⚡ 自由加练（不计入打卡） · 第 '+(seIdx+1)+' / '+sePool.length;
+    :'⚡ 超量加练（多学多得，闭环照样算数） · 第 '+(seIdx+1)+' / '+sePool.length;
 }
 document.getElementById('seNext').onclick=()=>seNext();
 let seCurW=null;
